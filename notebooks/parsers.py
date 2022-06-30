@@ -1,6 +1,7 @@
 import gzip
 import json
 
+import numpy as np
 import pandas as pd
 from tqdm import tqdm
 from shapely.geometry import Point

@@ -8,3 +8,4 @@ tqdm==4.57.0
 shapely==1.8.1
 scikit-learn==1.0.2
 nbexec==0.1.0
+jupyter==1.0.0
