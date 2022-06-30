@@ -1,4 +1,4 @@
-# Racial and Economic Disparities in Internet Offers
+# Racial and Economic Disparities in Internet Service Offers
 
 Data that we collected and analyzed are in the `data` folder.
 
@@ -79,17 +79,21 @@ From there, we group all households by block group and save each in `data/input/
 
 Raw API responses from each ISP's lookup tools are saved by block group in `data/intermediary/isp`.
 
-We merge demographic data from the 2019 American Community Survey (`data/intermediary/census`), historic HOLC grades (`data/input/redlining`) for each ISP here `data/output/speed_price_{isp}.csv.gz`.
+We merge demographic data from the 2019 American Community Survey (`data/intermediary/census`), historic HOLC grades (`data/input/redlining`) for each ISP and save them with this pattern `data/output/speed_price_{isp}.csv.gz`.
+
+These files contain offers for each ISP in each city in our study, including addresses that were not offered Internet services and other addresses which were otherwise removed from analysis.
 
 Everything generated for the analysis and used for a graph are saved in either `data/ouput/tables` or `data/output/figures`.
 
 ```
 data
 ├── input
-│   ├─── openaddresses
-│   │   ├── raw
-│   │   └── enriched
 │   ├── redlining
+│   ├── addresses
+│   │   ├── cities.ndjson
+│   │   └── open_addresses_enriched
+│   ├── fcc
+│   │   └── fbd_us_with_satellite_dec2020_v1.csv.gz
 │   ├── census
 │   │   ├── shape
 │   │   └── acs5
@@ -99,6 +103,11 @@ data
 │       ├── earthlink
 │       └── verizon
 ├── intermediary
+│   ├── fcc
+│   │   └── bg_providers.csv
+│   ├── census
+│   │   ├── aggregated_tables_plus_features.csv.gz
+│   │   └── 2019_acs_5_shapes.geojson.gz
 │   └── isp
 │       ├── att
 │       ├── centurylink
