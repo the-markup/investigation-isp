@@ -7,6 +7,3 @@ venv:
 
 run:
 	nbexec notebooks
-
-download:
-    sh download_data.sh
