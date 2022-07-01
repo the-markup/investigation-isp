@@ -22,10 +22,11 @@ make venv
 ## Notebooks
 These notebooks are intended to be run sequentially, but they are not dependent on one another.
 
-Test they work with
+Run every notebook with this command:
 ```
 make run
 ```
+Note that when `recalculate = False` (the default) in each notebook, files that exist are not re-generated.
 
 ### 0-get-acs-data.ipynb
 Collect data from the U.S. Census Bureau's American Community Survey. You'll need an Census [API key](https://api.census.gov/data/key_signup.html) and assign an environment variable `CENSUS_API_KEY`.
