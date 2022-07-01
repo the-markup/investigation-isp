@@ -183,3 +183,5 @@ redlininggrade2name = {
     'C' : 'C - Declining',
     'D' : 'D - Hazardous',
 }
+
+race_labels = ['most white', 'more white', 'less while', 'least white']

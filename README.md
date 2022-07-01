@@ -1,5 +1,9 @@
 # Racial and Economic Disparities in Internet Service Offers
 
+This repository contains code to reproduce the findings featured in our story "TK" and "TK" from our series TK.
+
+Our methodology is described in "TK".
+
 Data that we collected and analyzed are in the `data` folder.
 
 Jupyter notebooks used for data collection, preprocessing and analysis are in the `notebooks` folder.
@@ -73,7 +77,7 @@ This directory is where inputs, intermediaries and outputs are saved.
 
 Address data was downloaded from [OpenSources](https://opensources.io) and [NYC Open Data](https://data.cityofnewyork.us/City-Government/NYC-Address-Points/g6pj-hd8k) and grouped into block groups in `data/input/isp`. Each of these gzipped-JSON files is an input fed into the lookup tool collectors. 
 
-Raw API responses from each ISP's lookup tools are saved by block group in `data/intermediary/isp`.
+Raw API responses from each ISP's lookup tools are saved by block group in `data/intermediary/isp`. The complete directory us not stored on GitHub due to space restrictions. See end of this section on how to access this data. We provide one file as an example of a block group's data on this directory.
 
 We merge demographic data from the 2019 American Community Survey (`data/intermediary/census`), historic HOLC grades (`data/input/redlining`) for each ISP and save them with this pattern `data/output/speed_price_{isp}.csv.gz`.
 

@@ -4,9 +4,14 @@ from pandas.api.types import CategoricalDtype
 from matplotlib.lines import Line2D
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
-
-from config import speed_labels, income_labels, redlininggrade2name
 pd.options.mode.chained_assignment = None 
+
+from config import (
+    speed_labels, 
+    income_labels, 
+    redlininggrade2name, 
+    race_labels
+)
 
 RACE_COL = 'race_perc_non_white'
 
@@ -32,7 +37,7 @@ def bucket_and_bin(df):
         df['race_quantile'] = pd.qcut(
             df.race_perc_non_white.rank(method='first'), 
             q=4, 
-            labels=['most white', 'more white', 'less while', 'least white']
+            labels=race_labels
         )
     except:
         print(df.major_city.iloc[0])
