@@ -20,16 +20,16 @@ make venv
 ```
 
 ## Notebooks
-These notebooks are intended to be run sequentially, but they are not dependent on one another.
+These notebooks are intended to be run sequentially, but they are not dependent on one another.  If you want a quick overview of the methodology, you only need to concern yourself with the notebooks with an asterisk(*).
 
 Run every notebook with this command:
 ```
 make run
 ```
-Note that when `recalculate = False` (the default) in each notebook, files that exist are not re-generated.
+Note that when `recalculate = False` in each notebook, files that exist are not re-generated.
 
 ### 0-get-acs-data.ipynb
-Collect data from the U.S. Census Bureau's American Community Survey. You'll need an Census [API key](https://api.census.gov/data/key_signup.html) and assign an environment variable `CENSUS_API_KEY`.
+Collect data from the U.S. Census Bureau's American Community Survey. If you want to collect your own census data, you'll need to regiester for an [API key](https://api.census.gov/data/key_signup.html), and assign it as the environment variable `CENSUS_API_KEY`. This is not necessary as all outputs have already been calcualted and saved in this repository.
 
 ### 1-process-offers.ipynb
 Parses and preprocesses the JSON responses for offers collected from ISP's service lookup tools. The functions that parse each response can be found in `parsers.py`.
@@ -53,13 +53,10 @@ Used to generate a high-level summary of Internet offers for every city in our i
 
 <hr>
 
-There are also several Python scripts in this directory:
+There are also several Python utility scripts in this directory:
 
-###  utils.py
-Contains general functions that are re-used.
-
-### analysis.py
-Used to produce charts in notebooks starting with "2".
+### aggregators.py
+Used to aggregate data and primarily produce charts in notebooks starting with "2".
 
 ### parsers.py
 Parsers for JSON from lookup tools and geocodes addresses within HOLC grades.
@@ -74,17 +71,15 @@ Monkeypatch of `Multiprocessing.Pool`.
 ## Data
 This directory is where inputs, intermediaries and outputs are saved.
 
-Bulk address data was downloaded from openaddresses and NYC open data and saved in `data/input/openaddressess_raw/`. These addresses were filtered and geocoded with Census block groups. 
-
-From there, we group all households by block group and save each in `data/input/isp`. Each of these gzipped-JSON files is an input fed into the lookup tool collectors. 
+Address data was downloaded from [OpenSources](https://opensources.io) and [NYC Open Data](https://data.cityofnewyork.us/City-Government/NYC-Address-Points/g6pj-hd8k) and grouped into block groups in `data/input/isp`. Each of these gzipped-JSON files is an input fed into the lookup tool collectors. 
 
 Raw API responses from each ISP's lookup tools are saved by block group in `data/intermediary/isp`.
 
 We merge demographic data from the 2019 American Community Survey (`data/intermediary/census`), historic HOLC grades (`data/input/redlining`) for each ISP and save them with this pattern `data/output/speed_price_{isp}.csv.gz`.
 
-These files contain offers for each ISP in each city in our study, including addresses that were not offered Internet services and other addresses which were otherwise removed from analysis.
+These files (such as `data/output/speed_price_att.csv.gz`) contain offers for each ISP in each city in our study.
 
-Everything generated for the analysis and used for a graph are saved in either `data/ouput/tables` or `data/output/figures`.
+Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figures`, respectively.
 
 ```
 data
@@ -122,6 +117,13 @@ data
     ├── tables
     └── figures
 ```
+
+Some files are are too big to store on Github. You can find them hosted in the public s3 directory:
+```s3://markup-investigation-isp```
+These can be downloaded locally using this command (but it is not necessary to run our codes, since their outputs are already downloaded.)
+```make download```
+
+These files that are externally hosted are mostly `input`s related to open addresses (`data/input/addresses/open_addresses_enriched` and `data/input/isp`), bulk data from government sources: the census (`data/input/census/acs5/`) and FCC (`data/input/fcc/fbd_us_with_satellite_dec2020_v1.csv.gz`), and the API responses from each ISP (`data/intermediary/isp/`. 
 
 ## pipes
 Contains scrapers for each ISP, and Census API.

@@ -163,9 +163,23 @@ name2speed_el = {
 }
 
 speed_labels = {
-    'No service' : '#D9838D', 
-    'Slow (<25 Mbps)' : '#ECA326', 
-    'Medium (25-100)' : '#FFFE00', 
-    'Fast (100-200)' : '#76A865', 
-    "Blazin' (>200)": '#7CB5BD'
+    'No service' : "#5D5D5D", 
+    'Slow (<25 Mbps)' : '#801930', 
+    'Medium (25-100)' : '#a8596d', 
+    'Fast (100-200)' : '#aebdcf', 
+    "Blazin' (>200)": '#7b89a1'
+}
+
+income_labels = [
+    'Low', 
+    'Moderate', 
+    'Middle', 
+    'Upper Income'
+]
+
+redlininggrade2name = {
+    'A' : 'A - Best',
+    'B' : 'B - Desirable',
+    'C' : 'C - Declining',
+    'D' : 'D - Hazardous',
 }

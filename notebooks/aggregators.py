@@ -4,39 +4,12 @@ from pandas.api.types import CategoricalDtype
 from matplotlib.lines import Line2D
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
+
+from config import speed_labels, income_labels, redlininggrade2name
 pd.options.mode.chained_assignment = None 
 
 RACE_COL = 'race_perc_non_white'
 
-speed_labels = {
-    'No service' : "#5D5D5D", 
-    'Slow (<25 Mbps)' : '#801930', 
-    'Medium (25-100)' : '#a8596d', 
-    'Fast (100-200)' : '#aebdcf', 
-    "Blazin' (>200)": '#7b89a1'
-}
-
-income_labels = [
-    'Low', 
-    'Moderate', 
-    'Middle', 
-    'Upper Income'
-]
-
-redlininggrade2name = {
-    'A' : 'A - Best',
-    'B' : 'B - Desirable',
-    'C' : 'C - Declining',
-    'D' : 'D - Hazardous',
-}
-
-race_bins = ['>80% white', '60-80%', '40-60%', '20-40%', '<20%']
-redlinegrade2continuous = {
-    'A': 0,
-    'B': 1,
-    'C': 2,
-    'D': 3
-}
 def bucket_and_bin(df):
     """This is how we wrangle our data"""
     # These are our IVs
@@ -54,15 +27,7 @@ def bucket_and_bin(df):
         labels=speed_labels,
         right=False
     )
-    
-    df['race_bin'] = pd.cut(
-        df.race_perc_non_white,
-        bins=[-1, .2, .4, .6, .8, 2],
-        labels=race_bins,
-        right=False,
-        duplicates='drop',
-    )
-    
+ 
     try:
         df['race_quantile'] = pd.qcut(
             df.race_perc_non_white.rank(method='first'), 
@@ -449,57 +414,3 @@ def plot_race(df, location='National', isp='AT&T', price="$55"):
     
     plt.show()
     
-def which_race_has_most(df, look_for='Slow (<25 Mbps)', has_least=False):    
-    df['race_bin'] = pd.cut(
-        df.race_perc_non_white,
-        bins = [-1, .2, .4, .6, .8, 2],
-        labels = race_bins,
-        right=False,
-    )
-    grouped = df.groupby('race_bin', observed = True).speed_down_bins.value_counts(normalize=True)
-    data = []
-    for label in race_bins: 
-        try:
-            proportion = grouped[label, look_for]
-        except:
-            proportion = 0
-        data.append({
-            "label": label,
-            "proportion": proportion
-        })
-
-    most_slow = pd.DataFrame(data).sort_values(by='proportion', ascending=has_least).iloc[0].label
-    return most_slow
-
-def which_income_has_most(df, look_for='Slow (<25 Mbps)', has_least=False):
-    df = df[df['income_lmi'] > -11808.606100]
-    grouped = df.groupby('income_level', observed = True).speed_down_bins.value_counts(normalize=True)
-
-    data = []
-    for label in income_labels:  
-        try:
-            prop = grouped[label, look_for]
-        except:
-            prop = 0
-        data.append({
-            "label": label,
-            "proportion": prop
-        })
-    most_slow = pd.DataFrame(data).sort_values(by='proportion', ascending=has_least).iloc[0].label
-    return most_slow
-
-def which_redline_grade_has_most(df, look_for='Slow (<25 Mbps)', has_least=False):
-    grouped = df.groupby('redlining_grade', observed = True).speed_down_bins.value_counts(normalize=True)
-
-    data = []
-    for label in redlininggrade2name.keys():  
-        try:
-            prop = grouped[label, look_for]
-        except:
-            prop = 0
-        data.append({
-            "label": label,
-            "proportion": prop
-        })
-    most_slow = pd.DataFrame(data).sort_values(by='proportion', ascending=has_least).iloc[0].label
-    return most_slow

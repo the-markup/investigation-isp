@@ -11,3 +11,7 @@ profile_default/
 ipython_config.py
 
 .DS_Store
+
+# data files to skip
+data/intermediary/isp/att/cleveland/*
+data/input/isp/att/*

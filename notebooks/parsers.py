@@ -437,3 +437,10 @@ def el_workflow(fn: str, include_offer_meta=False):
     except Exception as e:
         print(f"{fn} {e}")
         return []
+    
+def read_ndjson(fn: str):
+    data = []
+    with gzip.open(fn, 'rb') as f:
+        for line in f.readlines():
+            data.append(json.loads(line))
+    return data
