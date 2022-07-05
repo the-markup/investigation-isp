@@ -126,6 +126,7 @@ Some files are are too big to store on Github. You can find them hosted in the p
 ```s3://markup-investigation-isp```
 These can be downloaded locally using this command (but it is not necessary to run our codes, since their outputs are already downloaded.)
 ```make download```
+NOTE: THIS IS NOT FUNCTIONAL YET
 
 These files that are externally hosted are mostly `input`s related to open addresses (`data/input/addresses/open_addresses_enriched` and `data/input/isp`), bulk data from government sources: the census (`data/input/census/acs5/`) and FCC (`data/input/fcc/fbd_us_with_satellite_dec2020_v1.csv.gz`), and the API responses from each ISP (`data/intermediary/isp/`. 
 
