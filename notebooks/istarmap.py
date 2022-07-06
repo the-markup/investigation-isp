@@ -4,7 +4,7 @@ across variables.
 """
 
 # istarmap.py for Python 3.8+
-import multiprocessing.pool as mpp
+import multiprocess.pool as mpp
 
 def istarmap(self, func, iterable, chunksize=1):
     """
