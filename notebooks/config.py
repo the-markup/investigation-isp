@@ -152,14 +152,27 @@ name2speed_el = {
     'Earthlink Internet 24Mx3M': 24,
     'EarthLink Internet 25Mx2M': 25,
     'EarthLink Internet 30M': 30,
+    'EarthLink Internet 40M': 40,
     'Earthlink Internet 45Mx6M': 45,
     'EarthLink Internet 45M': 45,
+    'EarthLink Internet 60M': 60,
     'EarthLink Internet 70Mx3M': 70,
     'Earthlink Internet 75Mx8M': 75,
     'EarthLink Internet 75M': 75,
-    'Earthlink Fiber 100Mx100M': 100,
+    'EarthLink Internet 80M': 80,
+    'EarthLink Internet 90Mx5M' : 90,
+    'EarthLink Fiber 100M': 100,
     'EarthLink Internet 115Mx7M' : 115,
+    'Earthlink Fiber 100Mx100M': 100,
+    'EarthLink Fiber 200M': 200,
     'EarthLink Fiber 300Mx300M': 300,
+    'Earthlink Fiber 300Mx300M': 300,
+    'Earthlink Fiber 500Mx500M': 500,
+    'EarthLink Fiber 700Mx700M': 700,
+    'EarthLink Fiber 1G': 1000,
+    'Earthlink Fiber 1Gx1G': 1000,
+    'Earthlink Fiber 2Gx2G': 2000,
+    'Earthlink Fiber 5Gx5G': 5000,
 }
 
 speed_labels = {
@@ -167,7 +180,7 @@ speed_labels = {
     'Slow (<25 Mbps)' : '#801930', 
     'Medium (25-100)' : '#a8596d', 
     'Fast (100-200)' : '#aebdcf', 
-    "Blazin' (>200)": '#7b89a1'
+    "Blazing (>200)": '#7b89a1'
 }
 
 income_labels = [

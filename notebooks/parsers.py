@@ -116,13 +116,24 @@ def get_cheapest_speed_att(row: dict):
                         speed_down = speed_down * .001
                         speed_up = speed_up * .001
                         speed_unit = 'Mbps'
+                    
+                    fastest_offer = internet['basePlans'][-1]['product']
+                    speed_unit_ = fastest_offer['downloadSpeed']['uom']
+                    speed_down_ = fastest_offer['downloadSpeed']['speed']
+                    price_ = fastest_offer['price']['netPrice']
+                    if speed_unit_ == 'Kbps':
+                        speed_down_ = speed_down_ * .001
+                        speed_unit_ = 'Mbps'
+                    
                     return pd.DataFrame([dict(
                         speed_down = speed_down,
                         speed_up = speed_up,
                         speed_unit = speed_unit,
                         price = offer['price']['netPrice'],
                         technology = 'Fiber' if is_fiber else 'Not Fiber',
-                        package = package
+                        package = package,
+                        fastest_speed_down = speed_down_,
+                        fastest_speed_price = price_
                     )]).iloc[0]
     except:
         pass
@@ -132,7 +143,9 @@ def get_cheapest_speed_att(row: dict):
         speed_unit = "",
         price = None,
         technology = None,
-        package = None
+        package = None,
+        fastest_speed_down = 0,
+        fastest_speed_price = 0
     )]).iloc[0]
 
 def parse_att(row: dict):
@@ -188,8 +201,19 @@ def get_cheapest_speed_cl(row: dict):
                     'package': offer['offerName']
                 })
             if offers:
-                return (pd.DataFrame(offers).sort_values(by='price', ascending=True)
-                                            .reset_index(drop=True).iloc[0])
+                
+                cheapest_speed =  (pd.DataFrame(offers)
+                                       .sort_values(by='price', ascending=True)
+                                       .reset_index(drop=True).iloc[0])
+                fastest_speed = (pd.DataFrame(offers)
+                                       .sort_values(by='speed_down', ascending=False)
+                                       .reset_index(drop=True).iloc[0])
+                
+                cheapest_speed['fastest_speed_down'] = fastest_speed['speed_down']
+                cheapest_speed['fastest_speed_price'] = fastest_speed['price']
+                
+                return cheapest_speed
+            
     return pd.DataFrame([{
         'speed_down': 0,
         'speed_up': 0,
@@ -197,6 +221,8 @@ def get_cheapest_speed_cl(row: dict):
         'price': None,
         'technology': None,
         'package': None,
+        'fastest_speed_down': 0,
+        'fastest_speed_price': 0
     }]).iloc[0]
 
 
@@ -264,9 +290,13 @@ def get_cheapest_speed_hsi(row: dict):
                 package = "HSI " + service_name
             )
             plans.append(internet)
-    return pd.DataFrame(plans).sort_values(by=['price', 'speed_down'], 
+    cheapest_offer = pd.DataFrame(plans).sort_values(by=['price', 'speed_down'], 
                                            ascending=[True, False]).iloc[0]
-
+    fastest_offer = pd.DataFrame(plans).sort_values(by=['speed_down'], 
+                                           ascending=False).iloc[0]
+    cheapest_offer['fastest_speed_down'] = fastest_offer['speed_down']
+    cheapest_offer['fastest_speed_price'] = fastest_offer['price']
+    return cheapest_offer
 
 def get_cheapest_speed_fios(row: dict):
     """
@@ -290,22 +320,31 @@ def get_cheapest_speed_fios(row: dict):
         except Exception as e:
             print(service['name'], e)
     if plans:
-        return pd.DataFrame(plans).sort_values(by='price', 
-                                               ascending=True).iloc[0]
+        cheapest_offer = pd.DataFrame(plans).sort_values(by='price', 
+                                                         ascending=True).iloc[0]
+        fastest_offer = pd.DataFrame(plans).sort_values(by='speed_down', 
+                                                         ascending=False).iloc[0]
+        cheapest_offer['fastest_speed_down'] = fastest_offer['speed_down']
+        cheapest_offer['fastest_speed_price'] = fastest_offer['price']
+        return cheapest_offer
+    
     return pd.DataFrame([{
-        'speed_down': 0, 'speed_up': 0, 'price': None, 'package':'FiOS'
+        'speed_down': 0, 'speed_up': 0, 'price': None, 'package':'FiOS',
+        'fastest_speed_down': 0, 'fastest_speed_price': 0
     }]).loc[0]
     
 def get_cheapest_speed_verizon(row: dict):
     offer = row.get('offer_verizon')
     if not offer:
         return pd.DataFrame([{
-            'speed_down': 0, 'speed_up': 0, 'price': None
+            'speed_down': 0, 'speed_up': 0, 'price': None,
+            'fastest_speed_down': 0, 'fastest_speed_price': 0
         }]).loc[0]
     
     if isinstance(offer, float):
         return pd.DataFrame([{
-            'speed_down': 0, 'speed_up': 0, 'price': None
+            'speed_down': 0, 'speed_up': 0, 'price': None,
+            'fastest_speed_down': 0, 'fastest_speed_price': 0
         }]).loc[0]
     elif offer.get('data'):
         return get_cheapest_speed_fios(row)
@@ -383,19 +422,25 @@ def get_cheapest_speed_el(row: dict):
             technology = code2meta.get(serv_level, {}).get("servLineType")
             plans.append(dict(
                 price=float(offer['price'].lstrip('$')),
-                speed_down=name2speed_el.get(service_name, service_name),
+                speed_down= float(name2speed_el.get(service_name, service_name)),
                 speed_up = int(offer['upstreamSpd']) / 1000,
                 speed_unit = "Mbps",
                 technology=technology,
                 package=service_name,
                 contract_provider = provider
             ))
-        return pd.DataFrame(plans).sort_values(by='price', 
-                                               ascending=True).iloc[0]
+        cheapest_offer = pd.DataFrame(plans).sort_values(by='price', 
+                                                         ascending=True).iloc[0]
+        fastest_offer = pd.DataFrame(plans).sort_values(by='speed_down', 
+                                                        ascending=False).iloc[0]
+        cheapest_offer['fastest_speed_down'] = fastest_offer['speed_down']
+        cheapest_offer['fastest_speed_price'] = fastest_offer['price']
+        return cheapest_offer
     else:
         return pd.DataFrame([{
             "price": None, "speed_down": 0, "speed_up":0,
-             "speed_unit": None, "technology": None, "package": None
+            "speed_unit": None, "technology": None, "package": None,
+            "fastest_speed_down": 0, "fastest_speed_price": 0
         }]).iloc[0]
     
     

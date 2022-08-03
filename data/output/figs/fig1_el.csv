@@ -1,9 +1,8 @@
-No service,Slow (<25 Mbps),Medium (25-100),Fast (100-200),Blazin' (>200),major_city,state
+No service,Slow (<25 Mbps),Medium (25-100),Fast (100-200),Blazing (>200),major_city,state
 0.0,1.0,0.0,0.0,0.0,Albuquerque,NM
 0.0,0.11826672458731538,0.12565160729800173,0.7560816681146829,0.0,Atlanta,GA
 0.0,1.0,0.0,0.0,0.0,Billings,MT
 0.0,1.0,0.0,0.0,0.0,Boise,ID
-0.0,0.75,0.25,0.0,0.0,Bridgeport,CT
 0.0,0.29565772669220947,0.37452107279693486,0.32982120051085567,0.0,Charleston,SC
 0.0,0.0863881224543424,0.1254105899356195,0.788201287610038,0.0,Charlotte,NC
 0.0,1.0,0.0,0.0,0.0,Cheyenne,WY
