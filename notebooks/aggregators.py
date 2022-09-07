@@ -15,17 +15,44 @@ from config import (
 
 RACE_COL = 'race_perc_non_white'
 
+def aspirational_quartile(series, labels):
+    desc = series.describe()
+    bins = []
+    sections = ['min', '25%','50%', '75%', 'max']
+    for sect in sections:
+        boundry = desc[sect]
+        if len(bins) != 0:
+            if bins[-1] == boundry:
+                bins[-1] = bins[-1] - .001
+        bins.append(boundry)
+    return pd.cut(
+        series,
+        bins=bins,
+        labels=labels
+    )
+
+
 def bucket_and_bin(df):
     """This is how we wrangle our data"""
     # These are our IVs
     # https://www.federalreserve.gov/consumerscommunities/cra_resources.htm
-    df.loc[df['income_lmi'] < -100, 'income_lmi'] = None    
-    df['income_level'] = pd.cut(
-        df['income_lmi'],
-        bins=[-1e10, .5, .8, 1.2, 1e10],
+    df.loc[df['income_lmi'] < -100, 'income_lmi'] = None   
+#     median_city_income = df['median_household_income'].median()
+#     df['income_lmi'] = df['median_household_income'] / median_city_income
+#     df['income_level'] = pd.cut(
+#         df['income_lmi'],
+#         bins=[-1e10, .5, .8, 1.2, 1e10],
+#         labels=['Low', 'Moderate', 'Middle', 'Upper Income'],
+#         right=False
+#     )
+
+    df.loc[df['median_household_income'] == -666666666.0, 'median_household_income'] = None  
+    
+    df['income_level'] = aspirational_quartile(
+        df['median_household_income'],
         labels=['Low', 'Moderate', 'Middle', 'Upper Income'],
-        right=False
-    )    
+    ) 
+    
     df['speed_down_bins'] = pd.cut(
         df.speed_down, 
         [-1, 0.00001, 25,  100, 200, 100000],
@@ -34,10 +61,16 @@ def bucket_and_bin(df):
     )
  
     try:
-        df['race_quantile'] = pd.qcut(
-            df.race_perc_non_white.rank(method='first'), 
-            q=4, 
+        df['race_quantile'] = aspirational_quartile(
+            df.race_perc_non_white, 
             labels=race_labels
+        )
+        
+        df['race_bins'] = pd.cut(
+            df.race_perc_non_white, 
+            [0, .25, .5, .75, 1],
+            labels=['All White', 'Majority White', 'Minority White', 'No White']
+            
         )
     except:
         print(df.major_city.iloc[0])
