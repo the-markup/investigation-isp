@@ -48,3 +48,5 @@
 {"fn": "../data/open_addresses/nyc_open_data_staten_island.geojson.gz", "city": "STATEN ISLAND", "state": "NY", "verizon": true}
 {"fn": "../data/open_addresses/us_wv_charleston.geojson.gz", "city": "CHARLESTON", "state": "WV", "earthlink": true}
 {"fn": "../data/open_addresses/us_ct_city_of_bridgeport-addresses-city.geojson.gz", "city": "BRIDGEPORT", "state": "CT", "earthlink": true}
+{"fn": "../data/input/addresses/open_addresses/us_tn_city_of_nashville-addresses-city.geojson.gz", "city": "NASHVILLE", "state": "TN", "att": true, "earthlink": true}
+{"fn": "../data/input/addresses/open_addresses/us_oh_city_of_columbus-addresses-city--geocoded.geojson.gz", "city": "COLUMBUS", "state": "OH", "att": true, "earthlink": true}
