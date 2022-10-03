@@ -1,4 +1,4 @@
-redlining_grade,No service,Slow (<25 Mbps),Medium (25-100),Fast (100-200),Blazing (>200),major_city
+redlining_grade,No service,Slow (<25 Mbps),Medium (25-99),Fast (100-199),Blazing (≥200),major_city
 A,0.0,26.27118644067797,0.0,0.0,73.72881355932203,new orleans
 B,0.0,50.76923076923077,0.6837606837606838,0.0,48.547008547008545,new orleans
 C,0.0,47.114427860696516,0.1990049751243781,0.0,52.68656716417911,new orleans
