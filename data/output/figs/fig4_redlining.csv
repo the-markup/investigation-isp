@@ -20,11 +20,11 @@ Observed,prop_slow_redlining_exposure,prop_slow_redlining_treatment,isp,major_ci
 ,,,AT&T,Little Rock,Little Rock˟
 ,,,AT&T,Oklahoma City,Oklahoma City˟
 18.36401811587916,20.710059171597635,2.346041055718475,Verizon,Newark,Newark
-,,,Verizon,Baltimore,Baltimore*
-,,,Verizon,Boston,Boston*
-,,,Verizon,New York City,New York City*
-,,,Verizon,Philadelphia,Philadelphia*
-,,,Verizon,Providence,Providence*
+2.767491432316744,6.155469574393246,3.3879781420765025,Verizon,Boston,Boston
+1.9075210069291293,2.410237296558579,0.5027162896294495,Verizon,Philadelphia,Philadelphia
+-0.04701970348720335,0.006679580522343197,0.053699284009546544,Verizon,New York City,New York City
+-0.6687328307701579,99.073701167942,99.74243399871216,Verizon,Baltimore,Baltimore
+,,,Verizon,Providence,Providence˟
 ,,,Verizon,Virginia Beach,Virginia Beach˟
 ,,,Verizon,Washington,Washington˟
 47.136397889977395,53.353428786737,6.217030896759608,CenturyLink,Minneapolis,Minneapolis
@@ -54,24 +54,24 @@ Observed,prop_slow_redlining_exposure,prop_slow_redlining_treatment,isp,major_ci
 9.128693575125224,26.368249365712217,17.23955579058699,EarthLink,Chicago,Chicago
 8.379530948782435,12.58023106546855,4.200700116686114,EarthLink,Atlanta,Atlanta
 8.013874556645817,33.5094460454691,25.49557148882328,EarthLink,Los Angeles,Los Angeles
+0.0,100.0,100.0,EarthLink,Denver,Denver
+0.0,100.0,100.0,EarthLink,Des Moines,Des Moines
+0.0,100.0,100.0,EarthLink,Portland,Portland
+0.0,100.0,100.0,EarthLink,Salt Lake City,Salt Lake City
+0.0,100.0,100.0,EarthLink,Seattle,Seattle
 -8.432998283624238,18.726591760299627,27.159590043923863,EarthLink,Nashville,Nashville
-,,,EarthLink,Albuquerque,Albuquerque*
-,,,EarthLink,Billings,Billings*
-,,,EarthLink,Boise,Boise*
+,,,EarthLink,Albuquerque,Albuquerque˟
+,,,EarthLink,Billings,Billings˟
+,,,EarthLink,Boise,Boise˟
 ,,,EarthLink,Charleston,Charleston˟
 ,,,EarthLink,Charlotte,Charlotte˟
-,,,EarthLink,Cheyenne,Cheyenne*
-,,,EarthLink,Denver,Denver*
-,,,EarthLink,Des Moines,Des Moines*
-,,,EarthLink,Fargo,Fargo*
+,,,EarthLink,Cheyenne,Cheyenne˟
+,,,EarthLink,Fargo,Fargo˟
 ,,,EarthLink,Huntsville,Huntsville˟
 ,,,EarthLink,Jacksonville,Jacksonville˟
-,,,EarthLink,Las Vegas,Las Vegas*
+,,,EarthLink,Las Vegas,Las Vegas˟
 ,,,EarthLink,Little Rock,Little Rock˟
 ,,,EarthLink,Oklahoma City,Oklahoma City˟
-,,,EarthLink,Omaha,Omaha*
-,,,EarthLink,Phoenix,Phoenix*
-,,,EarthLink,Portland,Portland*
-,,,EarthLink,Salt Lake City,Salt Lake City*
-,,,EarthLink,Seattle,Seattle*
-,,,EarthLink,Sioux Falls,Sioux Falls*
+,,,EarthLink,Omaha,Omaha˟
+,,,EarthLink,Phoenix,Phoenix˟
+,,,EarthLink,Sioux Falls,Sioux Falls˟

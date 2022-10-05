@@ -22,11 +22,11 @@ Observed,prop_slow_income_exposure,prop_slow_income_treatment,isp,major_city,dis
 19.213230455267343,31.73050041934582,12.517269964078476,Verizon,Washington,Washington
 8.414932680538556,28.02937576499388,19.614443084455324,Verizon,Virginia Beach,Virginia Beach
 5.848146890096617,19.22705314009662,13.37890625,Verizon,Newark,Newark
-,,,Verizon,Baltimore,Baltimore*
-,,,Verizon,Boston,Boston*
-,,,Verizon,New York City,New York City*
-,,,Verizon,Philadelphia,Philadelphia*
-,,,Verizon,Providence,Providence*
+4.671360859201622,5.88235294117647,1.2109920819748485,Verizon,Boston,Boston
+0.8980220164284288,2.816051493513024,1.9180294770845954,Verizon,Philadelphia,Philadelphia
+0.6923775626270334,99.73840665873959,99.04602909611256,Verizon,Baltimore,Baltimore
+0.6402048655569782,0.6402048655569782,0.0,Verizon,Providence,Providence
+-0.2226818738792288,0.05556996258289186,0.27825183646212065,Verizon,New York City,New York City
 43.67349318915035,51.36298421807748,7.689491028927133,CenturyLink,Minneapolis,Minneapolis
 33.71016686919394,64.55938697318008,30.849220103986134,CenturyLink,Cheyenne,Cheyenne
 31.11585413839481,50.43221110100091,19.3163569626061,CenturyLink,Seattle,Seattle
@@ -59,19 +59,19 @@ Observed,prop_slow_income_exposure,prop_slow_income_treatment,isp,major_city,dis
 2.336620723762975,22.042389210019266,19.705768486256293,EarthLink,Indianapolis,Indianapolis
 2.1345204876532144,11.401952085181899,9.267431597528685,EarthLink,Atlanta,Atlanta
 1.7194621809931143,19.107282693813627,17.38782051282051,EarthLink,Little Rock,Little Rock
+0.3315319972304165,99.38879456706282,99.0572625698324,EarthLink,Las Vegas,Las Vegas
+0.0,100.0,100.0,EarthLink,Albuquerque,Albuquerque
+0.0,100.0,100.0,EarthLink,Billings,Billings
+0.0,100.0,100.0,EarthLink,Boise,Boise
+0.0,100.0,100.0,EarthLink,Cheyenne,Cheyenne
+0.0,100.0,100.0,EarthLink,Denver,Denver
+0.0,100.0,100.0,EarthLink,Des Moines,Des Moines
+0.0,100.0,100.0,EarthLink,Fargo,Fargo
+0.0,100.0,100.0,EarthLink,Omaha,Omaha
+0.0,100.0,100.0,EarthLink,Phoenix,Phoenix
+0.0,100.0,100.0,EarthLink,Portland,Portland
+0.0,100.0,100.0,EarthLink,Salt Lake City,Salt Lake City
+0.0,100.0,100.0,EarthLink,Seattle,Seattle
+0.0,100.0,100.0,EarthLink,Sioux Falls,Sioux Falls
 -0.06470706927932668,24.30417495029821,24.368882019577537,EarthLink,Nashville,Nashville
 -0.8566201600257339,17.779743476337902,18.636363636363637,EarthLink,Jacksonville,Jacksonville
-,,,EarthLink,Albuquerque,Albuquerque*
-,,,EarthLink,Billings,Billings*
-,,,EarthLink,Boise,Boise*
-,,,EarthLink,Cheyenne,Cheyenne*
-,,,EarthLink,Denver,Denver*
-,,,EarthLink,Des Moines,Des Moines*
-,,,EarthLink,Fargo,Fargo*
-,,,EarthLink,Las Vegas,Las Vegas*
-,,,EarthLink,Omaha,Omaha*
-,,,EarthLink,Phoenix,Phoenix*
-,,,EarthLink,Portland,Portland*
-,,,EarthLink,Salt Lake City,Salt Lake City*
-,,,EarthLink,Seattle,Seattle*
-,,,EarthLink,Sioux Falls,Sioux Falls*
