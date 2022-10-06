@@ -1,77 +1,77 @@
 Observed,prop_slow_redlining_exposure,prop_slow_redlining_treatment,isp,major_city,display_city
-56.394385252832734,68.4931506849315,12.098765432098766,AT&T,Kansas City,Kansas City
+56.394385252832734,68.4931506849315,12.098765432098766,AT&T,Kansas City,"Kansas City, Mo."
 47.627203835446956,67.68867924528303,20.061475409836067,AT&T,Detroit,Detroit
-31.823840629201765,37.50778816199377,5.683947532792005,AT&T,Louisville,Louisville
+31.823840629201765,37.50778816199377,5.683947532792005,AT&T,Louisville,"Louisville, Ky."
 30.246042307162853,76.90322580645162,46.65718349928876,AT&T,New Orleans,New Orleans
-20.385733784345142,25.203252032520325,4.817518248175182,AT&T,Wichita,Wichita
-19.51987137076301,31.31067961165049,11.79080824088748,AT&T,Columbus,Columbus
+20.385733784345142,25.203252032520325,4.817518248175182,AT&T,Wichita,"Wichita, Kan."
+19.51987137076301,31.31067961165049,11.79080824088748,AT&T,Columbus,"Columbus, Ohio"
 15.912664488197063,19.346140883046846,3.4334763948497855,AT&T,Milwaukee,Milwaukee
 14.447198852204327,28.688524590163933,14.241325737959606,AT&T,Indianapolis,Indianapolis
-13.80304851053064,26.380368098159508,12.577319587628866,AT&T,Charlotte,Charlotte
+13.80304851053064,26.380368098159508,12.577319587628866,AT&T,Charlotte,"Charlotte, N.C."
 12.980308074253797,16.216216216216218,3.2359081419624216,AT&T,Atlanta,Atlanta
 10.596959584723768,16.344086021505376,5.747126436781609,AT&T,Houston,Houston
 8.242520698898412,28.023352793994995,19.78083209509658,AT&T,Chicago,Chicago
-7.157140162233541,17.192982456140353,10.03584229390681,AT&T,Nashville,Nashville
+7.157140162233541,17.192982456140353,10.03584229390681,AT&T,Nashville,"Nashville, Tenn."
 6.4839958407951315,33.52471642627083,27.040720585475697,AT&T,Los Angeles,Los Angeles
-,,,AT&T,Charleston,Charleston˟
-,,,AT&T,Huntsville,Huntsville˟
-,,,AT&T,Jackson,Jackson˟
-,,,AT&T,Jacksonville,Jacksonville˟
-,,,AT&T,Little Rock,Little Rock˟
+,,,AT&T,Charleston,"Charleston, S.C.˟"
+,,,AT&T,Huntsville,"Huntsville, Ala.˟"
+,,,AT&T,Jackson,"Jackson, Miss.˟"
+,,,AT&T,Jacksonville,"Jacksonville, Fla.˟"
+,,,AT&T,Little Rock,"Little Rock, Ark.˟"
 ,,,AT&T,Oklahoma City,Oklahoma City˟
-18.36401811587916,20.710059171597635,2.346041055718475,Verizon,Newark,Newark
-2.767491432316744,6.155469574393246,3.3879781420765025,Verizon,Boston,Boston
-1.9075210069291293,2.410237296558579,0.5027162896294495,Verizon,Philadelphia,Philadelphia
--0.04701970348720335,0.006679580522343197,0.053699284009546544,Verizon,New York City,New York City
--0.6687328307701579,99.073701167942,99.74243399871216,Verizon,Baltimore,Baltimore
-,,,Verizon,Providence,Providence˟
-,,,Verizon,Virginia Beach,Virginia Beach˟
+18.36401811587916,20.710059171597635,2.346041055718475,Verizon,Newark,"Newark, N.J."
+2.767491432316744,6.155469574393246,3.3879781420765025,Verizon,Boston,Boston*
+1.9075210069291293,2.410237296558579,0.5027162896294495,Verizon,Philadelphia,Philadelphia*
+-0.04701970348720335,0.006679580522343197,0.053699284009546544,Verizon,New York City,New York City*
+-0.6687328307701579,99.073701167942,99.74243399871216,Verizon,Baltimore,Baltimore*
+,,,Verizon,Providence,"Providence, R.I.*"
+,,,Verizon,Virginia Beach,"Virginia Beach, Va.˟"
 ,,,Verizon,Washington,Washington˟
 47.136397889977395,53.353428786737,6.217030896759608,CenturyLink,Minneapolis,Minneapolis
 42.13363245614906,58.778625954198475,16.644993498049416,CenturyLink,Phoenix,Phoenix
-24.182390386953728,55.707317073170735,31.524926686217007,CenturyLink,Des Moines,Des Moines
-22.70310670315132,31.514657980456022,8.811551277304702,CenturyLink,Portland,Portland
+24.182390386953728,55.707317073170735,31.524926686217007,CenturyLink,Des Moines,"Des Moines, Iowa"
+22.70310670315132,31.514657980456022,8.811551277304702,CenturyLink,Portland,"Portland, Ore."
 18.312504304687476,24.156305506216697,5.843801201529219,CenturyLink,Denver,Denver
 15.310230188107763,31.500219973603166,16.189989785495403,CenturyLink,Seattle,Seattle
 14.715119570046925,30.167014613778704,15.451895043731778,CenturyLink,Salt Lake City,Salt Lake City
-,,,CenturyLink,Albuquerque,Albuquerque˟
-,,,CenturyLink,Billings,Billings˟
-,,,CenturyLink,Boise,Boise˟
-,,,CenturyLink,Cheyenne,Cheyenne˟
-,,,CenturyLink,Fargo,Fargo˟
+,,,CenturyLink,Albuquerque,"Albuquerque, N.M.˟"
+,,,CenturyLink,Billings,"Billings, Mont.˟"
+,,,CenturyLink,Boise,"Boise, Idaho˟"
+,,,CenturyLink,Cheyenne,"Cheyenne, Wyo.˟"
+,,,CenturyLink,Fargo,"Fargo, N.D.˟"
 ,,,CenturyLink,Las Vegas,Las Vegas˟
-,,,CenturyLink,Omaha,Omaha˟
-,,,CenturyLink,Sioux Falls,Sioux Falls˟
-58.7985644174432,71.40726006961711,12.608695652173912,EarthLink,Kansas City,Kansas City
+,,,CenturyLink,Omaha,"Omaha, Neb.˟"
+,,,CenturyLink,Sioux Falls,"Sioux Falls, S.D.˟"
+58.7985644174432,71.40726006961711,12.608695652173912,EarthLink,Kansas City,"Kansas City, Mo."
 42.71122655416666,64.55304670584596,21.841820151679308,EarthLink,Detroit,Detroit
-27.15987747096046,35.521769177608846,8.36189170664839,EarthLink,Louisville,Louisville
+27.15987747096046,35.521769177608846,8.36189170664839,EarthLink,Louisville,"Louisville, Ky."
 25.171428394319395,79.56236323851203,54.39093484419264,EarthLink,New Orleans,New Orleans
 15.5389881834041,19.924953095684803,4.385964912280701,EarthLink,Milwaukee,Milwaukee
-15.082755227286249,75.31194295900178,60.22918773171554,EarthLink,Columbus,Columbus
+15.082755227286249,75.31194295900178,60.22918773171554,EarthLink,Columbus,"Columbus, Ohio"
 14.097835350582749,26.353092783505154,12.255257432922408,EarthLink,Indianapolis,Indianapolis
-11.997792494481237,16.99779249448124,5.0,EarthLink,Wichita,Wichita
+11.997792494481237,16.99779249448124,5.0,EarthLink,Wichita,"Wichita, Kan."
 11.049284578696343,16.666666666666664,5.617382087970324,EarthLink,Houston,Houston
 9.128693575125224,26.368249365712217,17.23955579058699,EarthLink,Chicago,Chicago
 8.379530948782435,12.58023106546855,4.200700116686114,EarthLink,Atlanta,Atlanta
 8.013874556645817,33.5094460454691,25.49557148882328,EarthLink,Los Angeles,Los Angeles
-0.0,100.0,100.0,EarthLink,Denver,Denver
-0.0,100.0,100.0,EarthLink,Des Moines,Des Moines
-0.0,100.0,100.0,EarthLink,Portland,Portland
-0.0,100.0,100.0,EarthLink,Salt Lake City,Salt Lake City
-0.0,100.0,100.0,EarthLink,Seattle,Seattle
--8.432998283624238,18.726591760299627,27.159590043923863,EarthLink,Nashville,Nashville
-,,,EarthLink,Albuquerque,Albuquerque˟
-,,,EarthLink,Billings,Billings˟
-,,,EarthLink,Boise,Boise˟
-,,,EarthLink,Charleston,Charleston˟
-,,,EarthLink,Charlotte,Charlotte˟
-,,,EarthLink,Cheyenne,Cheyenne˟
-,,,EarthLink,Fargo,Fargo˟
-,,,EarthLink,Huntsville,Huntsville˟
-,,,EarthLink,Jacksonville,Jacksonville˟
-,,,EarthLink,Las Vegas,Las Vegas˟
-,,,EarthLink,Little Rock,Little Rock˟
+0.0,100.0,100.0,EarthLink,Denver,Denver*
+0.0,100.0,100.0,EarthLink,Des Moines,"Des Moines, Iowa*"
+0.0,100.0,100.0,EarthLink,Portland,"Portland, Ore.*"
+0.0,100.0,100.0,EarthLink,Salt Lake City,Salt Lake City*
+0.0,100.0,100.0,EarthLink,Seattle,Seattle*
+-8.432998283624238,18.726591760299627,27.159590043923863,EarthLink,Nashville,"Nashville, Tenn."
+,,,EarthLink,Albuquerque,"Albuquerque, N.M.*"
+,,,EarthLink,Billings,"Billings, Mont.*"
+,,,EarthLink,Boise,"Boise, Idaho*"
+,,,EarthLink,Charleston,"Charleston, S.C.˟"
+,,,EarthLink,Charlotte,"Charlotte, N.C.˟"
+,,,EarthLink,Cheyenne,"Cheyenne, Wyo.*"
+,,,EarthLink,Fargo,"Fargo, N.D.*"
+,,,EarthLink,Huntsville,"Huntsville, Ala.˟"
+,,,EarthLink,Jacksonville,"Jacksonville, Fla.˟"
+,,,EarthLink,Las Vegas,Las Vegas*
+,,,EarthLink,Little Rock,"Little Rock, Ark.˟"
 ,,,EarthLink,Oklahoma City,Oklahoma City˟
-,,,EarthLink,Omaha,Omaha˟
-,,,EarthLink,Phoenix,Phoenix˟
-,,,EarthLink,Sioux Falls,Sioux Falls˟
+,,,EarthLink,Omaha,"Omaha, Neb.*"
+,,,EarthLink,Phoenix,Phoenix*
+,,,EarthLink,Sioux Falls,"Sioux Falls, S.D.*"
