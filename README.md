@@ -108,7 +108,7 @@ Here's a data dictionary for offers.
 | package                     | The name of the cheapest internet plan                                                                                                         |
 | fastest_speed_down          | The advertised download speed of the fastest package. This is usually the same as the cheapest plan if the `speed_down` is less than 200 Mbps. |
 | fastest_speed_price         | The advertised upload speed of the fastest internet package for the address.                                                                   |
-| fn                          | TK                                                                                                                                             |
+| fn                          | The name of the file of API responses where this record was parsed from.                                                                                                                                             |
 | redlining_grade             | The redlining grade, merged from Mapping Inequality based on the `lat` and `lon` of the adddress.                                              |
 | geoid                       | The Census bureau's GEOID for the address                                                                                                      |
 | race_perc_non_white         | The percentage of people of color (not non-Hispanic White) in the Census block group. Sourced from the 2019 5-year American Community Survey.  |
