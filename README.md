@@ -2,7 +2,7 @@
 
 This repository contains code to reproduce the findings featured in our story "TK" from our series Still Loading.
 
-Our methodology is described in "How We Investigated Internet Services  Offered to Disadvantaged Communities".
+Our methodology is described in "How We Investigated Internet Services Offered to Disadvantaged Communities".
 
 Data that we collected and analyzed are in the `data` folder.
 
@@ -76,6 +76,49 @@ Monkeypatch of `Multiprocessing.Pool` so we can run statsmodels using multiple c
 
 ## Data
 This directory is where inputs, intermediaries and outputs are saved.
+
+| column                      | description                                                                                                                                    |
+|:----------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
+| address_full                | The complete postal address of a household we searched.                                                                                        |
+| incorporated_place          | The incorporated city that the address belongs to                                                                                              |
+| major_city                  | The city that the address is in.                                                                                                               |
+| state                       | The state the that the address is in.                                                                                                          |
+| lat                         | The latitudinal coordinate that the address is in.                                                                                             |
+| lon                         | The Longitudinal coorindate that the address is in.                                                                                            |
+| availability_status         | TK                                                                                                                                             |
+| block_group                 | The census block group of the address as of 2019.                                                                                              |
+| collection_datetime         | The unix timestamp that the address was used to query the provider's website                                                                   |
+| provider                    | The internet service provider                                                                                                                  |
+| speed_down                  | Cheapest advertised download speed for the address.                                                                                            |
+| speed_up                    | Cheapest advertised upload speed for the address.                                                                                              |
+| speed_unit                  | The unit of speed, should always be Megabits per second (Mbps).                                                                                |
+| price                       | The cost in USD of the cheapest advertised internet plan for the address                                                                       |
+| technology                  | The kind of technology (Fiber or non-Fiber) used to serve the cheapest internet plan                                                           |
+| package                     | The name of the cheapest internet plan                                                                                                         |
+| fastest_speed_down          | The advertised download speed of the fastest package. This is usually the same as the cheapest plan if the `speed_down` is less than 200 Mbps. |
+| fastest_speed_price         | The advertised upload speed of the fastest internet package for the address.                                                                   |
+| fn                          | TK                                                                                                                                             |
+| redlining_grade             | The redlining grade, merged from Mapping Inequality based on the `lat` and `lon` of the adddress.                                              |
+| closest_fiber_miles         | The closest household in the city with speeds at or above 200 Mbps.                                                                            |
+| address_full_closest_fiber  | The complete postal address of the household with the closes fiber speeds.                                                                     |
+| lat_closest_fiber           | TK                                                                                                                                             |
+| lon_closest_fiber           | TK                                                                                                                                             |
+| geoid                       | The Census bureau's GEOID for the address                                                                                                      |
+| race_perc_non_white         | The percentage of non-Hispanic White population in the addresses' Census block group.                                                          |
+| income_lmi                  | TK                                                                                                                                             |
+| ppl_per_sq_mile             | TK                                                                                                                                             |
+| n_providers                 | TK                                                                                                                                             |
+| income_dollars_below_median | TK                                                                                                                                             |
+| internet_perc_broadband     | The percentage of the population that is already subscriped to broadband in an addresses' Census block group.                                  |
+| median_household_income     | The median household income in the addresses' Census block group.                                                                              |
+| income_level                | TK                                                                                                                                             |
+| speed_down_bins             | TK                                                                                                                                             |
+| race_quantile               | TK                                                                                                                                             |
+| race_bins                   | TK                                                                                                                                             |
+| is_slow                     | `True` if `speed_down` is below 25 Mbps.                                                                                                       |
+| race_perc                   | TK                                                                                                                                             |
+
+
 
 Address data was downloaded from [OpenSources](https://opensources.io) and [NYC Open Data](https://data.cityofnewyork.us/City-Government/NYC-Address-Points/g6pj-hd8k) and grouped and compressed into block groups in `data/input/isp`. 
 
