@@ -77,6 +77,18 @@ Monkeypatch of `Multiprocessing.Pool` so we can run statsmodels using multiple c
 ## Data
 This directory is where inputs, intermediaries and outputs are saved.
 
+
+Address data was downloaded from [OpenSources](https://opensources.io) and [NYC Open Data](https://data.cityofnewyork.us/City-Government/NYC-Address-Points/g6pj-hd8k) and grouped and compressed into block groups in `data/input/isp`. 
+
+We use these [gzip](https://www.gzip.org/)ped-[GeoJSON](https://geojson.org/) files to sample addresses to search from each ISP's lookup tool. 
+
+Raw API responses from lookup tools are saved by block group in `data/intermediary/isp`. The complete directory us not stored on GitHub due to space restrictions. See [end of this section](#Download-all-data) on how to access this data. We provide one file as an example of a block group's data on this directory.
+
+We merge demographic data from the 2019 American Community Survey (`data/intermediary/census`), historic HOLC grades (`data/input/redlining`) for each ISP and save them with this pattern `data/output/speed_price_{isp}.csv.gz`.
+
+These files (such as `data/output/speed_price_att.csv.gz`) contain offers for each ISP in each city in our study.
+
+Here's a data dictionary for offers.
 | column                      | description                                                                                                                                    |
 |:----------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
 | address_full                | The complete postal address of a household we searched.                                                                                        |
@@ -85,7 +97,6 @@ This directory is where inputs, intermediaries and outputs are saved.
 | state                       | The state the that the address is in.                                                                                                          |
 | lat                         | The latitudinal coordinate that the address is in.                                                                                             |
 | lon                         | The Longitudinal coorindate that the address is in.                                                                                            |
-| availability_status         | TK                                                                                                                                             |
 | block_group                 | The census block group of the address as of 2019.                                                                                              |
 | collection_datetime         | The unix timestamp that the address was used to query the provider's website                                                                   |
 | provider                    | The internet service provider                                                                                                                  |
@@ -99,36 +110,18 @@ This directory is where inputs, intermediaries and outputs are saved.
 | fastest_speed_price         | The advertised upload speed of the fastest internet package for the address.                                                                   |
 | fn                          | TK                                                                                                                                             |
 | redlining_grade             | The redlining grade, merged from Mapping Inequality based on the `lat` and `lon` of the adddress.                                              |
-| closest_fiber_miles         | The closest household in the city with speeds at or above 200 Mbps.                                                                            |
-| address_full_closest_fiber  | The complete postal address of the household with the closes fiber speeds.                                                                     |
-| lat_closest_fiber           | TK                                                                                                                                             |
-| lon_closest_fiber           | TK                                                                                                                                             |
 | geoid                       | The Census bureau's GEOID for the address                                                                                                      |
-| race_perc_non_white         | The percentage of non-Hispanic White population in the addresses' Census block group.                                                          |
-| income_lmi                  | TK                                                                                                                                             |
-| ppl_per_sq_mile             | TK                                                                                                                                             |
-| n_providers                 | TK                                                                                                                                             |
-| income_dollars_below_median | TK                                                                                                                                             |
+| race_perc_non_white         | The percentage of people of color (not non-Hispanic White) in the Census block group. Sourced from the 2019 5-year American Community Survey.  |
+| income_lmi                  | `median_household_income` divided by the city median household income.                                                                         |
+| ppl_per_sq_mile             | People per square mile is used to determine population density. Sourced from 2019 TIGER shape files from the U.S. Census Bureau.               |
+| n_providers                 | The number of other competitors in the addresses` Census block group. Sourced from FCC form 477.                                               |
+| income_dollars_below_median | City median household income minus the `median_household_income`.                                                                              |
 | internet_perc_broadband     | The percentage of the population that is already subscriped to broadband in an addresses' Census block group.                                  |
-| median_household_income     | The median household income in the addresses' Census block group.                                                                              |
-| income_level                | TK                                                                                                                                             |
-| speed_down_bins             | TK                                                                                                                                             |
-| race_quantile               | TK                                                                                                                                             |
-| race_bins                   | TK                                                                                                                                             |
+| median_household_income     | The median household income in the addresses' Census block group. Sourced from the 2019 5-year American Community Survey                       |
+| income_level                | How we categorized income. We binned `median_household_income` into quartiles                                                                  |
+| speed_down_bins             | How we categorized addresses by `speed_down`.                                                                                                  |
+| race_quantile               | How we categorized race and ethnicity. We binned `race_perc_non_white` into quartiles.                                                         |
 | is_slow                     | `True` if `speed_down` is below 25 Mbps.                                                                                                       |
-| race_perc                   | TK                                                                                                                                             |
-
-
-
-Address data was downloaded from [OpenSources](https://opensources.io) and [NYC Open Data](https://data.cityofnewyork.us/City-Government/NYC-Address-Points/g6pj-hd8k) and grouped and compressed into block groups in `data/input/isp`. 
-
-We use these [gzip](https://www.gzip.org/)ped-[GeoJSON](https://geojson.org/) files to sample addresses to search from each ISP's lookup tool. 
-
-Raw API responses from lookup tools are saved by block group in `data/intermediary/isp`. The complete directory us not stored on GitHub due to space restrictions. See [end of this section](#Download-all-data) on how to access this data. We provide one file as an example of a block group's data on this directory.
-
-We merge demographic data from the 2019 American Community Survey (`data/intermediary/census`), historic HOLC grades (`data/input/redlining`) for each ISP and save them with this pattern `data/output/speed_price_{isp}.csv.gz`.
-
-These files (such as `data/output/speed_price_att.csv.gz`) contain offers for each ISP in each city in our study.
 
 Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figures`, respectively.
 
