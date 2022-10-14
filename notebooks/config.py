@@ -3,14 +3,17 @@ import json
 cities = []
 with open('../data/input/addresses/cities.ndjson', 'r') as f:
     for line in f:
-        cities.append(json.loads(line))
-        
+        try:
+            cities.append(json.loads(line))
+        except:
+            print(line)
+            
 inc_city_att = [
     'Atlanta city',
     'Charleston city',
+    'Columbus city',
     'Charlotte city',
     'Chicago city',
-    'Cleveland city',
     'Detroit city',
     'Houston city',
     'Huntsville city',
@@ -21,7 +24,7 @@ inc_city_att = [
     'Little Rock city',
     'Los Angeles city',
     'Louisville city',
-    'Memphis city',
+    'Nashville-Davidson metropolitan government (balance)',
     'Milwaukee city',
     'New Orleans city',
     'Oklahoma City city',
@@ -68,7 +71,7 @@ inc_city_el = [
     'Charlotte city',
     'Cheyenne city',
     'Chicago city',
-    'Cleveland city',
+    'Columbus city',
     'Denver city',
     'Des Moines city',
     'Detroit city',
@@ -82,8 +85,8 @@ inc_city_el = [
     'Little Rock city',
     'Los Angeles city',
     'Louisville city',
-    'Memphis city',
     'Milwaukee city',
+    'Nashville-Davidson metropolitan government (balance)',
     'New Orleans city',
     'Oklahoma City city',
     'Omaha city',
@@ -95,13 +98,60 @@ inc_city_el = [
     'Wichita city'
 ]
 
+city2ap = {
+    'Albuquerque': 'Albuquerque, N.M.',
+    'Atlanta': 'Atlanta',
+    'Baltimore': 'Baltimore',
+    'Billings': 'Billings, Mont.',
+    'Boise': 'Boise, Idaho',
+    'Boston': 'Boston',
+    'Charleston': 'Charleston, S.C.',
+    'Charlotte': 'Charlotte, N.C.',
+    'Cheyenne': 'Cheyenne, Wyo.',
+    'Chicago': 'Chicago',
+    'Columbus': 'Columbus, Ohio',
+    'Denver': 'Denver',
+    'Des Moines': 'Des Moines, Iowa',
+    'Detroit': 'Detroit',
+    'Fargo': 'Fargo, N.D.',
+    'Houston': 'Houston',
+    'Huntsville': 'Huntsville, Ala.',
+    'Indianapolis': 'Indianapolis',
+    'Jackson': 'Jackson, Miss.',
+    'Jacksonville': 'Jacksonville, Fla.',
+    'Kansas City': 'Kansas City, Mo.',
+    'Las Vegas': 'Las Vegas',
+    'Little Rock': 'Little Rock, Ark.',
+    'Los Angeles': 'Los Angeles',
+    'Louisville': 'Louisville, Ky.',
+    'Milwaukee': 'Milwaukee',
+    'Minneapolis': 'Minneapolis',
+    'Nashville': 'Nashville, Tenn.',
+    'New Orleans': 'New Orleans',
+    'New York City': 'New York City',
+    'Newark': 'Newark, N.J.',
+    'Oklahoma City': 'Oklahoma City',
+    'Omaha': 'Omaha, Neb.',
+    'Philadelphia': 'Philadelphia',
+    'Phoenix': 'Phoenix',
+    'Portland': 'Portland, Ore.',
+    'Providence': 'Providence, R.I.',
+    'Salt Lake City': 'Salt Lake City',
+    'Seattle': 'Seattle',
+    'Sioux Falls': 'Sioux Falls, S.D.',
+    'Virginia Beach': 'Virginia Beach, Va.',
+    'Washington': 'Washington',
+    'Wichita': 'Wichita, Kan.'
+}
+
 state2redlining = {
     'TX': ['../data/input/redlining/TXHouston19XX.geojson'],
     'CA': ['../data/input/redlining/CALosAngeles1939.geojson'],
     'LA': ['../data/input/redlining/LANewOrleans1939.geojson'],
     'KS': ['../data/input/redlining/KSWichita1937.geojson'],
     'IA': ['../data/input/redlining/IADesMoines19XX.geojson'],
-    'OH': ['../data/input/redlining/OHCleveland1939.geojson'],
+#     'OH': ['../data/input/redlining/OHCleveland1939.geojson'],
+    'OH': ['../data/input/redlining/OHColumbus1936.geojson'],
     'WV': ['../data/input/redlining/WVCharleston1938.geojson'],
     'AR': ['../data/input/redlining/ARLittleRock19XX.geojson'],
     'AZ': ['../data/input/redlining/AZPhoenix19XX.geojson'],
@@ -126,7 +176,8 @@ state2redlining = {
     'MO': ['../data/input/redlining/MOGreaterKansasCity1939.geojson'],
     'MS': ['../data/input/redlining/MSJackson19XX.geojson'],
     'NC': ['../data/input/redlining/NCCharlotte1935.geojson'],
-    'TN': ['../data/input/redlining/TNMemphis19XX.geojson'],
+#     'TN': ['../data/input/redlining/TNMemphis19XX.geojson'],
+    'TN': ['../data/input/redlining/TNNashville19XX.geojson'],
     'NY': [
         '../data/input/redlining/NYBronx1938.geojson',
         '../data/input/redlining/NYBrooklyn1938.geojson',
@@ -154,10 +205,12 @@ name2speed_el = {
     'EarthLink Internet 30M': 30,
     'EarthLink Internet 40M': 40,
     'Earthlink Internet 45Mx6M': 45,
+    'EarthLink Internet 45Mx6M': 45,
     'EarthLink Internet 45M': 45,
     'EarthLink Internet 60M': 60,
     'EarthLink Internet 70Mx3M': 70,
     'Earthlink Internet 75Mx8M': 75,
+    'EarthLink Internet 75Mx8M': 75,
     'EarthLink Internet 75M': 75,
     'EarthLink Internet 80M': 80,
     'EarthLink Internet 90Mx5M' : 90,
@@ -175,18 +228,20 @@ name2speed_el = {
     'Earthlink Fiber 5Gx5G': 5000,
 }
 
+name2speed_el = {k.lower(): v for k,v in name2speed_el.items()}
+
 speed_labels = {
     'No service' : "#5D5D5D", 
     'Slow (<25 Mbps)' : '#801930', 
-    'Medium (25-100)' : '#a8596d', 
-    'Fast (100-200)' : '#aebdcf', 
-    "Blazing (>200)": '#7b89a1'
+    'Medium (25-99)' : '#a8596d', 
+    'Fast (100-199)' : '#aebdcf', 
+    "Blazing (≥200)": '#7b89a1'
 }
 
 income_labels = [
     'Low', 
-    'Moderate', 
-    'Middle', 
+    'Middle-Lower', 
+    'Middle-Upper', 
     'Upper Income'
 ]
 

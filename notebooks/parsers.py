@@ -102,40 +102,47 @@ def get_cheapest_speed_att(row: dict):
         if row.get('offer_att'):
             row = row['offer_att']
             if isinstance(row, dict):
+
                 is_fiber = (row.get('content', {})
                                .get("serviceAvailability", {})
                                .get("availableServices", {}).get("fiberAvailable"))
                 internet = row.get('content', {}).get('baseOffers', {}).get('broadband')
+
                 if internet:
-                    offer = internet['basePlans'][0]['product']
-                    package = offer['shortDisplayName']
-                    speed_unit = offer['downloadSpeed']['uom']
-                    speed_down = offer['downloadSpeed']['speed']
-                    speed_up = offer['uploadSpeed']['speed'] if 'FIBER' not in package else speed_down
-                    if speed_unit == 'Kbps':
-                        speed_down = speed_down * .001
-                        speed_up = speed_up * .001
-                        speed_unit = 'Mbps'
-                    
-                    fastest_offer = internet['basePlans'][-1]['product']
-                    speed_unit_ = fastest_offer['downloadSpeed']['uom']
-                    speed_down_ = fastest_offer['downloadSpeed']['speed']
-                    price_ = fastest_offer['price']['netPrice']
-                    if speed_unit_ == 'Kbps':
-                        speed_down_ = speed_down_ * .001
-                        speed_unit_ = 'Mbps'
-                    
+                    plans = []
+                    for plan in internet['basePlans']:
+                        offer = plan['product']
+                        package = offer['shortDisplayName']
+                        speed_unit = offer['downloadSpeed']['uom']
+                        speed_down = offer['downloadSpeed']['speed']
+                        speed_up = offer['uploadSpeed']['speed'] if 'FIBER' not in package else speed_down
+                        if speed_unit == 'Kbps':
+                            speed_down = speed_down * .001
+                            speed_up = speed_up * .001
+                            speed_unit = 'Mbps'
+                        plans.append({
+                            'package': package,
+                            'speed_unit': speed_unit,
+                            'speed_down': speed_down,
+                            'speed_up': speed_up,
+                            'price': offer['price']['netPrice'],
+                            'technology': 'Fiber' if is_fiber else 'Not Fiber',
+                        })
+                    plans = pd.DataFrame(plans) 
+
+                    baseplan = plans.sort_values(by='price', ascending=True).iloc[0]
+                    fastest_plan = plans.sort_values(by='speed_down', ascending=False).iloc[0]
                     return pd.DataFrame([dict(
-                        speed_down = speed_down,
-                        speed_up = speed_up,
-                        speed_unit = speed_unit,
-                        price = offer['price']['netPrice'],
-                        technology = 'Fiber' if is_fiber else 'Not Fiber',
-                        package = package,
-                        fastest_speed_down = speed_down_,
-                        fastest_speed_price = price_
+                        speed_down = baseplan['speed_down'],
+                        speed_up = baseplan['speed_up'],
+                        speed_unit = baseplan['speed_unit'],
+                        price = baseplan['price'],
+                        technology = baseplan['technology'],
+                        package = baseplan['package'],
+                        fastest_speed_down = fastest_plan['speed_down'],
+                        fastest_speed_price = fastest_plan['price']
                     )]).iloc[0]
-    except:
+    except Exception as e:
         pass
     return pd.DataFrame([dict(
         speed_down = 0,
@@ -422,7 +429,7 @@ def get_cheapest_speed_el(row: dict):
             technology = code2meta.get(serv_level, {}).get("servLineType")
             plans.append(dict(
                 price=float(offer['price'].lstrip('$')),
-                speed_down= float(name2speed_el.get(service_name, service_name)),
+                speed_down= float(name2speed_el.get(service_name.lower(), service_name)),
                 speed_up = int(offer['upstreamSpd']) / 1000,
                 speed_unit = "Mbps",
                 technology=technology,

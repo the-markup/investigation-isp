@@ -32,7 +32,7 @@ def aspirational_quartile(series, labels):
     )
 
 
-def bucket_and_bin(df):
+def bucket_and_bin(df, limitations=False):
     """This is how we wrangle our data"""
     # These are our IVs
     # https://www.federalreserve.gov/consumerscommunities/cra_resources.htm
@@ -50,7 +50,7 @@ def bucket_and_bin(df):
     
     df['income_level'] = aspirational_quartile(
         df['median_household_income'],
-        labels=['Low', 'Moderate', 'Middle', 'Upper Income'],
+        labels=['Low', 'Middle-Lower', 'Middle-Upper', 'Upper Income'],
     ) 
     
     df['speed_down_bins'] = pd.cut(
@@ -66,14 +66,23 @@ def bucket_and_bin(df):
             labels=race_labels
         )
         
-        df['race_bins'] = pd.cut(
-            df.race_perc_non_white, 
-            [0, .25, .5, .75, 1],
-            labels=['All White', 'Majority White', 'Minority White', 'No White']
+#         df['race_bins'] = pd.cut(
+#             df.race_perc_non_white, 
+#             [0, .25, .5, .75, 1],
+#             labels=['All White', 'Majority White', 'Minority White', 'No White']
             
-        )
+#         )
     except:
         print(df.major_city.iloc[0])
+    
+    if limitations:
+        df['race_quantile'] = pd.cut(df['race_perc_non_white'], 
+                                     bins=[0, .4, .6, 1],
+                                     labels=['most white', 'integrated', 'least white'])
+        
+        df['income_level'] = pd.cut(df['income_lmi'], 
+                                    bins=[-1e10, .5, 1.2, 1e10],
+                                    labels=['Low', 'Middle', 'Upper Income'])
     
     # this is our DV
     df['is_slow'] = df.apply(
@@ -217,7 +226,7 @@ def income(df, isp="AT&T", location="National"):
                    for label, c in speed_labels.items() if label in categories][::-1]
     
     df['color'] = df['speed_down_bins'].apply(lambda x: speed_labels.get(x))
-    df = df[(~df['income_lmi'].isnull()) & (df['income_lmi'] > -11808.606100)]
+#     df = df[(~df['income_lmi'].isnull()) & (df['income_lmi'] > -11808.606100)]
     df.loc[:, 'income_level'] = df['income_level'].astype(
          CategoricalDtype(income_labels, ordered=True)
     ).copy(deep=True)
