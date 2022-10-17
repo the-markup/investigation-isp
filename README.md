@@ -111,8 +111,9 @@ data
     ├── speed_price_centurylink.csv.gz    
     ├── speed_price_earthlink.csv.gz
     ├── speed_price_verizon.csv.gz
-    ├── tables
-    └── figures
+    ├── by_city
+    ├── figs
+    └── tables
 ```
 
 A [summary](https://github.com/the-markup/investigation-isp/blob/main/data/output/tables/table1_cities_ranked_by_categories.csv) of disparties for each city and provider across socioeconomic categories can be found in `data/output/tables/table1_cities_ranked_by_categories`.
@@ -153,7 +154,7 @@ A data dictionary for this file:
 
 You can find a similar file for inidividuals cities, [below](#Localized-datasets).
 
-Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figures`, respectively.
+Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figs`, respectively.
 
 The `data/` directory also features `data/input/` and `data/intermediary/` for files that were collected and processed to create the `data/output` files mentioned above. The complete directory is not stored on GitHub due to space restrictions. See [end of this section](#Download-all-data) on how to access this data. 
 
