@@ -10,6 +10,7 @@ from sklearn.neighbors import BallTree
 
 from config import name2speed_el, state2redlining, cities
 
+
 ## Census Geocoding
 def get_incorporated_places(row: dict):
     places = []
@@ -86,9 +87,10 @@ def get_closest_fiber(df: pd.DataFrame) -> pd.DataFrame:
     
     # merge the info of the closest fiber household
     closest = _df.iloc[indices[:, 0]][[
-        'address_full', 'lat', 'lon'
+        'address_full', 'lat', 'lon', 'median_household_income', 'race_perc_non_white'
     ]].reset_index(drop=True) 
     return df.merge(closest, 
+                    how='left',
                     left_index=True, right_index=True, 
                     suffixes=['', '_closest_fiber'])
 
@@ -166,7 +168,7 @@ def parse_att(row: dict):
         "state" : get_state(row),
         "lat": lat,
         "lon": lon,
-        "availability_status" : row.get('availability_status'),
+#         "availability_status" : row.get('availability_status'),
         "block_group": str(row['block_group']),
         "collection_datetime": row['collection_datetime'],
         'provider': 'AT&T'
@@ -244,7 +246,7 @@ def parse_cl(row: dict):
         "state" : [_['state'] for _ in cities if _['city'].lower() == row['major_city']][0],
         "lat": lat,
         "lon": lon,
-        "availability_status" : row.get('availability_status'),
+#         "availability_status" : row.get('availability_status'),
         "block_group": str(row['block_group']),
         "collection_datetime": row['collection_datetime'],
         'provider': 'CenturyLink'
@@ -371,7 +373,7 @@ def parse_verizon(row: dict, include_offer_meta = False):
         "state" : get_state(row),
         "lat": lat,
         "lon": lon,
-        "availability_status" : row.get('availability_status'),
+#         "availability_status" : row.get('availability_status'),
         "block_group": str(row['block_group']),
         "collection_datetime": row['collection_datetime'],
         'in_service' : True if in_service == 'Y' else False,
@@ -462,7 +464,7 @@ def parse_el(row: dict, include_offer_meta=False):
         "state" : get_state(row),
         "lat": lat,
         "lon": lon,
-        "availability_status" : row.get('availability_status'),
+#         "availability_status" : row.get('availability_status'),
         "block_group": str(row['block_group']),
         "collection_datetime": row['collection_datetime'],
         'provider': 'EarthLink'

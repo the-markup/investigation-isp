@@ -32,6 +32,38 @@ def aspirational_quartile(series, labels):
     )
 
 
+## For all ISP analysis
+def filter_df(fn, isp):
+    """
+    Filters out no service offers, and cities which we can't analyze
+    """
+    df = pd.read_csv(fn)
+    df = df[df.speed_down != 0]
+    df = bucket_and_bin(df)
+    df['isp'] = isp
+    if isp == 'Verizon':
+        df.price = df.price.replace({40: 39.99, 49.99: 39.99})
+        df = df[df.price == 39.99]
+        nyc_cities = ['new york', 'brooklyn', 'queens', 'staten island', 'brooklyn', 'bronx']
+        nyc = []
+        for city, _df in df.groupby('major_city'):
+            if city in nyc_cities:
+                nyc.extend(_df.to_dict(orient='records'))
+        nyc = pd.DataFrame(nyc)
+        nyc['major_city'] = 'new york city'
+        
+        # add NYC
+        df = df[~df.major_city.isin(nyc_cities)]
+        df = df.append(nyc)
+        
+    elif isp == 'EarthLink':
+        df = df[df.contract_provider.isin(['AT&T', 'CenturyLink'])]
+        
+    homogenous_cities = {'bridgeport', 'wilmington'}
+    df = df[~df.major_city.isin(homogenous_cities)]
+    return df
+
+
 def bucket_and_bin(df, limitations=False):
     """This is how we wrangle our data"""
     # These are our IVs
@@ -66,12 +98,6 @@ def bucket_and_bin(df, limitations=False):
             labels=race_labels
         )
         
-#         df['race_bins'] = pd.cut(
-#             df.race_perc_non_white, 
-#             [0, .25, .5, .75, 1],
-#             labels=['All White', 'Majority White', 'Minority White', 'No White']
-            
-#         )
     except:
         print(df.major_city.iloc[0])
     

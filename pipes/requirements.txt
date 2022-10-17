@@ -1,7 +1,0 @@
-pandas==0.25.1
-tqdm==4.64.0
-aiohttp==3.7.3
-asyncio==3.4.3
-pathos==0.2.9
-aiocfscrape==1.0.0
-async-retrying==0.2.2
