@@ -86,9 +86,7 @@ def get_closest_fiber(df: pd.DataFrame) -> pd.DataFrame:
     df["closest_fiber_miles"] = distances * 3958.756
     
     # merge the info of the closest fiber household
-    closest = _df.iloc[indices[:, 0]][[
-        'address_full', 'lat', 'lon', 'median_household_income', 'race_perc_non_white'
-    ]].reset_index(drop=True) 
+    closest = _df.iloc[indices[:, 0]].reset_index(drop=True) 
     return df.merge(closest, 
                     how='left',
                     left_index=True, right_index=True, 

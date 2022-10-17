@@ -113,8 +113,10 @@ data
     └── figures
 ```
 
-Internet service plans for each provider are stored in the `data/output/` directory.
-AT&T for example is found in `data/output/speed_price_att.csv.gz`.
+A [summary](https://github.com/the-markup/investigation-isp/blob/main/data/output/tables/table1_cities_ranked_by_categories.csv) of disparties for each city and provider across socioeconomic categories can be found in `data/output/tables/table1_cities_ranked_by_categories`.
+
+Address-level Internet service plans for each provider are stored in the `data/output/` directory, the file for AT&T is called `data/output/speed_price_att.csv.gz`.
+
 A data dictionary for this file:
 
 | column                      | description                                                                                                                                    |
@@ -145,29 +147,31 @@ A data dictionary for this file:
 | income_dollars_below_median | City median household income minus the `median_household_income`.                                                                              |
 | internet_perc_broadband     | The percentage of the population that is already subscriped to broadband in an addresses' Census block group.                                  |
 | median_household_income     | The median household income in the addresses' Census block group. Sourced from the 2019 5-year American Community Survey                       |
-| income_level                | How we categorized income. We binned `median_household_income` into quartiles                                                                  |
-| speed_down_bins             | How we categorized addresses by `speed_down`.                                                                                                  |
-| race_quantile               | How we categorized race and ethnicity. We binned `race_perc_non_white` into quartiles.                                                         |
-| is_slow                     | `True` if `speed_down` is below 25 Mbps.                                                                                                       |
+                                                      |
+
+You can find a similar file for inidividuals cities, [below](#Localized-datasets).
 
 Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figures`, respectively.
 
-This directory also features `data/input/` and `data/intermediary/` files that were collected for processed for the `data/output` files mentioned above. These are almost entirely stored externally, but available [to download](#download-all-data).
+The `data/` directory also features `data/input/` and `data/intermediary/` for files that were collected and processed to create the `data/output` files mentioned above. The complete directory is not stored on GitHub due to space restrictions. See [end of this section](#Download-all-data) on how to access this data. 
 
-Address data was downloaded from [OpenSources](https://opensources.io) and [NYC Open Data](https://data.cityofnewyork.us/City-Government/NYC-Address-Points/g6pj-hd8k) and grouped and compressed into block groups in `data/input/isp`. 
+Address data was downloaded from [OpenSources](https://opensources.io) and [NYC Open Data](https://data.cityofnewyork.us/City-Government/NYC-Address-Points/g6pj-hd8k) and grouped and into block groups in `data/input/isp` as [gzip](https://www.gzip.org/)ped-[GeoJSON](https://geojson.org/) files. 
 
-We use these [gzip](https://www.gzip.org/)ped-[GeoJSON](https://geojson.org/) files to sample addresses to search from each ISP's lookup tool. 
+These records get fed into lookup tools for each ISP's webszite. Raw API responses from lookup tools are saved by block group in `data/intermediary/isp`. 
 
-Raw API responses from lookup tools are saved by block group in `data/intermediary/isp`. The complete directory us not stored on GitHub due to space restrictions. See [end of this section](#Download-all-data) on how to access this data. We provide one file as an example of a block group's data on this directory.
+We provide one file as an example of a block group's data on this directory.
 
-We merge demographic data from the 2019 American Community Survey (`data/intermediary/census`), historic HOLC grades (`data/input/redlining`) for each ISP and save them with this pattern `data/output/speed_price_{isp}.csv.gz`.
+We collected demographic data from the 2019 American Community Survey (`data/intermediary/census`), historic redlining grades (`data/input/redlining`) from University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58&text=intro) project.
 
 
 ### Download all data
-Some files are are too big or numerous to store on Github. Y
+Some files are are too big or numerous to store on Github.
 
-You can find them hosted as xz-compresased tar files in AWS S3:
-```s3://markup-public-data/isp/```
+You can find them hosted as xz-compressed archives in AWS S3:
+```
+s3://markup-public-data/isp/input.tar.xz
+s3://markup-public-data/isp/intermedairy.tar.xz
+```
 
 These can be downloaded locally using `data/download_external_data.sh`.
 
@@ -176,10 +180,48 @@ Externally hosted files are [input]()s related to open addresses (`data/input/ad
 We also saved [intermediary]() files, such as the API responses from each ISP (`data/intermediary/isp/`) merged with the geolocation data. 
 
 ### Localized datasets
-Hey do you want to use data we collected to report on your city?
+Do you want to write a local story based on the data we collected?
 
-Below is a list of each city we collected, and a link to the street-level data for each.
+We wrote a story recipe guide to help do that, and below is a list of each city we collected, and a link to the street-level data for each. Note that the data has been categorized based on an addresses' surrounding socioeconomics.
 
-TK
+- Albuquerque, N.M. ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/albuquerque_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/albuquerque_earthlink_plans.csv")) 
+ - Atlanta, Ga. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/atlanta_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/atlanta_earthlink_plans.csv")) 
+ - Billings, Mont. ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/billings_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/billings_earthlink_plans.csv")) 
+ - Boise, Idaho ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/boise_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/boise_earthlink_plans.csv")) 
+ - Charleston, S.C. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/charleston_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/charleston_earthlink_plans.csv")) 
+ - Charlotte, N.C. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/charlotte_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/charlotte_earthlink_plans.csv")) 
+ - Cheyenne, Wyo. ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/cheyenne_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/cheyenne_earthlink_plans.csv")) 
+ - Chicago, Ill. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/chicago_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/chicago_earthlink_plans.csv")) 
+ - Columbus, Ohio ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/columbus_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/columbus_earthlink_plans.csv")) 
+ - Denver, Colo. ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/denver_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/denver_earthlink_plans.csv")) 
+ - Des Moines, Iowa ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/des+moines_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/des+moines_earthlink_plans.csv")) 
+ - Detroit, Mich. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/detroit_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/detroit_earthlink_plans.csv")) 
+ - Fargo, N.D. ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/fargo_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/fargo_earthlink_plans.csv")) 
+ - Houston, Texas ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/houston_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/houston_earthlink_plans.csv")) 
+ - Huntsville, Ala. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/huntsville_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/huntsville_earthlink_plans.csv")) 
+ - Indianapolis, Ind. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/indianapolis_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/indianapolis_earthlink_plans.csv")) 
+ - Jackson, Miss. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/jackson_at%26t_plans.csv")) 
+ - Jacksonville, Fla. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/jacksonville_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/jacksonville_earthlink_plans.csv")) 
+ - Kansas City, Mo. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/kansas+city_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/kansas+city_earthlink_plans.csv")) 
+ - Las Vegas, Nev. ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/las+vegas_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/las+vegas_earthlink_plans.csv")) 
+ - Little Rock, Ark. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/little+rock_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/little+rock_earthlink_plans.csv")) 
+ - Los Angeles, Calif. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/los+angeles_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/los+angeles_earthlink_plans.csv")) 
+ - Louisville, Ky. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/louisville_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/louisville_earthlink_plans.csv")) 
+ - Milwaukee, Wis. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/milwaukee_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/milwaukee_earthlink_plans.csv")) 
+ - Minneapolis, Minn. ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/minneapolis_centurylink_plans.csv")) 
+ - Nashville, Tenn. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/nashville_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/nashville_earthlink_plans.csv")) 
+ - New Orleans, La. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/new+orleans_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/new+orleans_earthlink_plans.csv")) 
+ - Newark, N.J. ([Verizon]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/newark_verizon_plans.csv")) 
+ - Oklahoma City, Okla. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/oklahoma+city_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/oklahoma+city_earthlink_plans.csv")) 
+ - Omaha, Neb. ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/omaha_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/omaha_earthlink_plans.csv")) 
+ - Phoenix, Ariz. ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/phoenix_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/phoenix_earthlink_plans.csv")) 
+ - Portland, Ore. ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/portland_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/portland_earthlink_plans.csv")) 
+ - Salt Lake City, Utah ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/salt+lake+city_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/salt+lake+city_earthlink_plans.csv")) 
+ - Seattle, Wash ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/seattle_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/seattle_earthlink_plans.csv")) 
+ - Sioux Falls, S.D. ([CenturyLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/sioux+falls_centurylink_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/sioux+falls_earthlink_plans.csv")) 
+ - Virginia Beach, Va. ([Verizon]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/virginia+beach_verizon_plans.csv")) 
+ - Washington ([Verizon]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/washington_verizon_plans.csv")) 
+ - Wichita, Kan. ([AT&T]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/wichita_at%26t_plans.csv"), [EarthLink]("https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/wichita_earthlink_plans.csv"))
 
-For summaries of each city, please refer to the [methodology]().
+
+For summaries of each city, please refer to the [methodology]() or this [file](https://github.com/the-markup/investigation-isp/blob/main/data/output/tables/table1_cities_ranked_by_categories.csv).
