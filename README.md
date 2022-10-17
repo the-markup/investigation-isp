@@ -150,7 +150,7 @@ A data dictionary for this file:
 | income_dollars_below_median | City median household income minus the `median_household_income`.                                                                              |
 | internet_perc_broadband     | The percentage of the population that is already subscriped to broadband in an addresses' Census block group.                                  |
 | median_household_income     | The median household income in the addresses' Census block group. Sourced from the 2019 5-year American Community Survey                       |
-                                                      |
+
 
 You can find a similar file for inidividuals cities, [below](#Localized-datasets).
 
@@ -178,11 +178,9 @@ s3://markup-public-data/isp/isp-intermedairy.tar.xz
 
 These can be downloaded locally using `data/download_external_data.sh`.
 
-`s3://markup-public-data/isp/input.tar.xz` is about 5.5 GB compressed and 
+`s3://markup-public-data/isp/input.tar.xz` is about 7.7 GB compressed and contains open source addresses (`data/input/addresses/open_addresses_enriched` and `data/input/isp`), bulk data from government sources: the census (`data/input/census/acs5/`) and FCC (`data/input/fcc/fbd_us_with_satellite_dec2020_v1.csv.gz`). 
 
-Externally hosted files are [input]()s related to open addresses (`data/input/addresses/open_addresses_enriched` and `data/input/isp`), bulk data from government sources: the census (`data/input/census/acs5/`) and FCC (`data/input/fcc/fbd_us_with_satellite_dec2020_v1.csv.gz`). 
-
-We also saved [intermediary]() files, such as the API responses from each ISP (`data/intermediary/isp/`) merged with the geolocation data. 
+`s3://markup-public-data/isp/isp-intermedairy.tar.xz` is about 5.7 GB and contains API responses from each ISP (`data/intermediary/isp/`) appended to the geographic data we pulled in above.
 
 ### Localized datasets
 Do you want to write a local story based on the data we collected?
