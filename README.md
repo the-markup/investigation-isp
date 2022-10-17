@@ -150,6 +150,10 @@ A data dictionary for this file:
 | race_quantile               | How we categorized race and ethnicity. We binned `race_perc_non_white` into quartiles.                                                         |
 | is_slow                     | `True` if `speed_down` is below 25 Mbps.                                                                                                       |
 
+Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figures`, respectively.
+
+This directory also features `data/input/` and `data/intermediary/` files that were collected for processed for the `data/output` files mentioned above. These are almost entirely stored externally, but available [to download](#download-all-data).
+
 Address data was downloaded from [OpenSources](https://opensources.io) and [NYC Open Data](https://data.cityofnewyork.us/City-Government/NYC-Address-Points/g6pj-hd8k) and grouped and compressed into block groups in `data/input/isp`. 
 
 We use these [gzip](https://www.gzip.org/)ped-[GeoJSON](https://geojson.org/) files to sample addresses to search from each ISP's lookup tool. 
@@ -157,11 +161,6 @@ We use these [gzip](https://www.gzip.org/)ped-[GeoJSON](https://geojson.org/) fi
 Raw API responses from lookup tools are saved by block group in `data/intermediary/isp`. The complete directory us not stored on GitHub due to space restrictions. See [end of this section](#Download-all-data) on how to access this data. We provide one file as an example of a block group's data on this directory.
 
 We merge demographic data from the 2019 American Community Survey (`data/intermediary/census`), historic HOLC grades (`data/input/redlining`) for each ISP and save them with this pattern `data/output/speed_price_{isp}.csv.gz`.
-
-
-
-Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figures`, respectively.
-
 
 
 ### Download all data
