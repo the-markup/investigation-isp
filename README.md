@@ -168,15 +168,17 @@ We collected demographic data from the 2019 American Community Survey (`data/int
 
 
 ### Download all data
-Some files are are too big or numerous to store on Github.
+You can find all of the other input and intermediary files hosted externally.
 
-You can find them hosted as xz-compressed archives in AWS S3:
+You can find them hosted as xz-compressed archives in AWS S3 here:
 ```
-s3://markup-public-data/isp/input.tar.xz
-s3://markup-public-data/isp/intermedairy.tar.xz
+s3://markup-public-data/isp/isp-input.tar.xz
+s3://markup-public-data/isp/isp-intermedairy.tar.xz
 ```
 
 These can be downloaded locally using `data/download_external_data.sh`.
+
+`s3://markup-public-data/isp/input.tar.xz` is about 5.5 GB compressed and 
 
 Externally hosted files are [input]()s related to open addresses (`data/input/addresses/open_addresses_enriched` and `data/input/isp`), bulk data from government sources: the census (`data/input/census/acs5/`) and FCC (`data/input/fcc/fbd_us_with_satellite_dec2020_v1.csv.gz`). 
 
