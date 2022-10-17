@@ -150,8 +150,6 @@ A data dictionary for this file:
 | race_quantile               | How we categorized race and ethnicity. We binned `race_perc_non_white` into quartiles.                                                         |
 | is_slow                     | `True` if `speed_down` is below 25 Mbps.                                                                                                       |
 
-
-
 Address data was downloaded from [OpenSources](https://opensources.io) and [NYC Open Data](https://data.cityofnewyork.us/City-Government/NYC-Address-Points/g6pj-hd8k) and grouped and compressed into block groups in `data/input/isp`. 
 
 We use these [gzip](https://www.gzip.org/)ped-[GeoJSON](https://geojson.org/) files to sample addresses to search from each ISP's lookup tool. 
@@ -167,13 +165,22 @@ Tables and figures featured in our methodology and story can be found in `data/o
 
 
 ### Download all data
-Some files are are too big to store on Github. You can find them hosted in the public s3 directory:
-```s3://markup-investigation-isp```
-These can be downloaded locally using this command (but it is not necessary to run our codes, since their outputs are already downloaded.)
-```make download```
-NOTE: THIS IS NOT FUNCTIONAL YET
+Some files are are too big or numerous to store on Github. Y
 
-Externally hosted files are mostly `input`s related to open addresses (`data/input/addresses/open_addresses_enriched` and `data/input/isp`), bulk data from government sources: the census (`data/input/census/acs5/`) and FCC (`data/input/fcc/fbd_us_with_satellite_dec2020_v1.csv.gz`), and the API responses from each ISP (`data/intermediary/isp/`. 
+You can find them hosted as xz-compresased tar files in AWS S3:
+```s3://markup-public-data/isp/```
 
-## pipes
-Contains scrapers for each ISP, and Census API.
+These can be downloaded locally using `data/download_external_data.sh`.
+
+Externally hosted files are [input]()s related to open addresses (`data/input/addresses/open_addresses_enriched` and `data/input/isp`), bulk data from government sources: the census (`data/input/census/acs5/`) and FCC (`data/input/fcc/fbd_us_with_satellite_dec2020_v1.csv.gz`). 
+
+We also saved [intermediary]() files, such as the API responses from each ISP (`data/intermediary/isp/`) merged with the geolocation data. 
+
+### Localized datasets
+Hey do you want to use data we collected to report on your city?
+
+Below is a list of each city we collected, and a link to the street-level data for each.
+
+TK
+
+For summaries of each city, please refer to the [methodology]().
