@@ -1,8 +1,8 @@
-# Racial and Economic Disparities in Internet Service Offers
+# Uncovering Disparities in Internet Service Offers
 
-This repository contains code to reproduce the findings featured in our story "TK" from our series Still Loading.
+This repository contains code to reproduce the findings featured in our story "Dollars to Megabits: You May Be Paying 400 Times as Much as your Neighbor for Internet" from our series Still Loading.
 
-Our methodology is described in "How We Investigated Internet Services Offered to Disadvantaged Communities".
+Our methodology is described in "[How We Uncovered Disparities in Internet Deals Offered to Disadvantaged Communities](https://themarkup.org/still-loading)".
 
 Data that we collected and analyzed are in the `data` folder.
 
@@ -53,9 +53,6 @@ This is also where we use logistic regression to adjust for business factors to 
 ### 4-verizon-spotcheck.ipynb
 A look into Verizon's price changes for limitations in the methdology.
 
-### 5-city-template.ipynb
-Used to generate a high-level summary of Internet offers for every city in our investigation. This is a work in progress
-
 
 <hr>
 
@@ -77,53 +74,7 @@ Monkeypatch of `Multiprocessing.Pool` so we can run statsmodels using multiple c
 ## Data
 This directory is where inputs, intermediaries and outputs are saved.
 
-
-Address data was downloaded from [OpenSources](https://opensources.io) and [NYC Open Data](https://data.cityofnewyork.us/City-Government/NYC-Address-Points/g6pj-hd8k) and grouped and compressed into block groups in `data/input/isp`. 
-
-We use these [gzip](https://www.gzip.org/)ped-[GeoJSON](https://geojson.org/) files to sample addresses to search from each ISP's lookup tool. 
-
-Raw API responses from lookup tools are saved by block group in `data/intermediary/isp`. The complete directory us not stored on GitHub due to space restrictions. See [end of this section](#Download-all-data) on how to access this data. We provide one file as an example of a block group's data on this directory.
-
-We merge demographic data from the 2019 American Community Survey (`data/intermediary/census`), historic HOLC grades (`data/input/redlining`) for each ISP and save them with this pattern `data/output/speed_price_{isp}.csv.gz`.
-
-These files (such as `data/output/speed_price_att.csv.gz`) contain offers for each ISP in each city in our study.
-
-Here's a data dictionary for offers.
-| column                      | description                                                                                                                                    |
-|:----------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
-| address_full                | The complete postal address of a household we searched.                                                                                        |
-| incorporated_place          | The incorporated city that the address belongs to                                                                                              |
-| major_city                  | The city that the address is in.                                                                                                               |
-| state                       | The state the that the address is in.                                                                                                          |
-| lat                         | The latitudinal coordinate that the address is in.                                                                                             |
-| lon                         | The Longitudinal coorindate that the address is in.                                                                                            |
-| block_group                 | The census block group of the address as of 2019.                                                                                              |
-| collection_datetime         | The unix timestamp that the address was used to query the provider's website                                                                   |
-| provider                    | The internet service provider                                                                                                                  |
-| speed_down                  | Cheapest advertised download speed for the address.                                                                                            |
-| speed_up                    | Cheapest advertised upload speed for the address.                                                                                              |
-| speed_unit                  | The unit of speed, should always be Megabits per second (Mbps).                                                                                |
-| price                       | The cost in USD of the cheapest advertised internet plan for the address                                                                       |
-| technology                  | The kind of technology (Fiber or non-Fiber) used to serve the cheapest internet plan                                                           |
-| package                     | The name of the cheapest internet plan                                                                                                         |
-| fastest_speed_down          | The advertised download speed of the fastest package. This is usually the same as the cheapest plan if the `speed_down` is less than 200 Mbps. |
-| fastest_speed_price         | The advertised upload speed of the fastest internet package for the address.                                                                   |
-| fn                          | The name of the file of API responses where this record was parsed from.                                                                                                                                             |
-| redlining_grade             | The redlining grade, merged from Mapping Inequality based on the `lat` and `lon` of the adddress.                                              |
-| geoid                       | The Census bureau's GEOID for the address                                                                                                      |
-| race_perc_non_white         | The percentage of people of color (not non-Hispanic White) in the Census block group. Sourced from the 2019 5-year American Community Survey.  |
-| income_lmi                  | `median_household_income` divided by the city median household income.                                                                         |
-| ppl_per_sq_mile             | People per square mile is used to determine population density. Sourced from 2019 TIGER shape files from the U.S. Census Bureau.               |
-| n_providers                 | The number of other competitors in the addresses` Census block group. Sourced from FCC form 477.                                               |
-| income_dollars_below_median | City median household income minus the `median_household_income`.                                                                              |
-| internet_perc_broadband     | The percentage of the population that is already subscriped to broadband in an addresses' Census block group.                                  |
-| median_household_income     | The median household income in the addresses' Census block group. Sourced from the 2019 5-year American Community Survey                       |
-| income_level                | How we categorized income. We binned `median_household_income` into quartiles                                                                  |
-| speed_down_bins             | How we categorized addresses by `speed_down`.                                                                                                  |
-| race_quantile               | How we categorized race and ethnicity. We binned `race_perc_non_white` into quartiles.                                                         |
-| is_slow                     | `True` if `speed_down` is below 25 Mbps.                                                                                                       |
-
-Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figures`, respectively.
+Here is an overview of how the directory is organized:
 
 ```
 data
@@ -161,6 +112,59 @@ data
     ├── tables
     └── figures
 ```
+
+Internet service plans for each provider are stored in the `data/output/` directory.
+AT&T for example is found in `data/output/speed_price_att.csv.gz`.
+A data dictionary for this file:
+
+| column                      | description                                                                                                                                    |
+|:----------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
+| address_full                | The complete postal address of a household we searched.                                                                                        |
+| incorporated_place          | The incorporated city that the address belongs to                                                                                              |
+| major_city                  | The city that the address is in.                                                                                                               |
+| state                       | The state the that the address is in.                                                                                                          |
+| lat                         | The latitudinal coordinate that the address is in.                                                                                             |
+| lon                         | The Longitudinal coorindate that the address is in.                                                                                            |
+| block_group                 | The census block group of the address as of 2019.                                                                                              |
+| collection_datetime         | The unix timestamp that the address was used to query the provider's website                                                                   |
+| provider                    | The internet service provider                                                                                                                  |
+| speed_down                  | Cheapest advertised download speed for the address.                                                                                            |
+| speed_up                    | Cheapest advertised upload speed for the address.                                                                                              |
+| speed_unit                  | The unit of speed, should always be Megabits per second (Mbps).                                                                                |
+| price                       | The cost in USD of the cheapest advertised internet plan for the address                                                                       |
+| technology                  | The kind of technology (Fiber or non-Fiber) used to serve the cheapest internet plan                                                           |
+| package                     | The name of the cheapest internet plan                                                                                                         |
+| fastest_speed_down          | The advertised download speed of the fastest package. This is usually the same as the cheapest plan if the `speed_down` is less than 200 Mbps. |
+| fastest_speed_price         | The advertised upload speed of the fastest internet package for the address.                                                                   |
+| fn                          | The name of the file of API responses where this record was parsed from.                                                                       |
+| redlining_grade             | The redlining grade, merged from Mapping Inequality based on the `lat` and `lon` of the adddress.                                              |
+| race_perc_non_white         | The percentage of people of color (not non-Hispanic White) in the Census block group. Sourced from the 2019 5-year American Community Survey.  |
+| income_lmi                  | `median_household_income` divided by the city median household income.                                                                         |
+| ppl_per_sq_mile             | People per square mile is used to determine population density. Sourced from 2019 TIGER shape files from the U.S. Census Bureau.               |
+| n_providers                 | The number of other competitors in the addresses  Census block group. Sourced from FCC form 477.                                               |
+| income_dollars_below_median | City median household income minus the `median_household_income`.                                                                              |
+| internet_perc_broadband     | The percentage of the population that is already subscriped to broadband in an addresses' Census block group.                                  |
+| median_household_income     | The median household income in the addresses' Census block group. Sourced from the 2019 5-year American Community Survey                       |
+| income_level                | How we categorized income. We binned `median_household_income` into quartiles                                                                  |
+| speed_down_bins             | How we categorized addresses by `speed_down`.                                                                                                  |
+| race_quantile               | How we categorized race and ethnicity. We binned `race_perc_non_white` into quartiles.                                                         |
+| is_slow                     | `True` if `speed_down` is below 25 Mbps.                                                                                                       |
+
+
+
+Address data was downloaded from [OpenSources](https://opensources.io) and [NYC Open Data](https://data.cityofnewyork.us/City-Government/NYC-Address-Points/g6pj-hd8k) and grouped and compressed into block groups in `data/input/isp`. 
+
+We use these [gzip](https://www.gzip.org/)ped-[GeoJSON](https://geojson.org/) files to sample addresses to search from each ISP's lookup tool. 
+
+Raw API responses from lookup tools are saved by block group in `data/intermediary/isp`. The complete directory us not stored on GitHub due to space restrictions. See [end of this section](#Download-all-data) on how to access this data. We provide one file as an example of a block group's data on this directory.
+
+We merge demographic data from the 2019 American Community Survey (`data/intermediary/census`), historic HOLC grades (`data/input/redlining`) for each ISP and save them with this pattern `data/output/speed_price_{isp}.csv.gz`.
+
+
+
+Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figures`, respectively.
+
+
 
 ### Download all data
 Some files are are too big to store on Github. You can find them hosted in the public s3 directory:
