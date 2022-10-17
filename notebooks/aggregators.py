@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from pandas.api.types import CategoricalDtype
 from matplotlib.lines import Line2D
+import matplotlib.ticker as mtick
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 pd.options.mode.chained_assignment = None 
@@ -69,15 +70,6 @@ def bucket_and_bin(df, limitations=False):
     # These are our IVs
     # https://www.federalreserve.gov/consumerscommunities/cra_resources.htm
     df.loc[df['income_lmi'] < -100, 'income_lmi'] = None   
-#     median_city_income = df['median_household_income'].median()
-#     df['income_lmi'] = df['median_household_income'] / median_city_income
-#     df['income_level'] = pd.cut(
-#         df['income_lmi'],
-#         bins=[-1e10, .5, .8, 1.2, 1e10],
-#         labels=['Low', 'Moderate', 'Middle', 'Upper Income'],
-#         right=False
-#     )
-
     df.loc[df['median_household_income'] == -666666666.0, 'median_household_income'] = None  
     
     df['income_level'] = aspirational_quartile(
@@ -165,11 +157,9 @@ def speed_breakdown(df, location='National', isp='AT&T'):
     ax.axes.yaxis.set_visible(False)
     
     ax.set_ylabel("")
-    labels = ax.get_xticks().tolist()
-    labels = [int(_* 100) for _ in labels]
-    labels[0] = "0%"
-    ax.set_xticklabels(labels)
     ax.set_xlabel("Percentage of residential Internet offers")
+    ax.xaxis.set_major_formatter(mtick.PercentFormatter(1.0))
+
 
     ax.legend(handles=legend_elements[::-1],
               loc='lower left', 
@@ -346,13 +336,11 @@ def redlining(df, isp="AT&T", location="National"):
     ax.yaxis.set_ticks_position('left')
     ax.xaxis.set_ticks_position('bottom')
 
-    ax.set_ylabel("")
-    ax.set_xlabel("Percentage of residential Internet offers")
-    
     labels = [redlininggrade2name.get(item.get_text()) for item in ax.get_yticklabels()]
     ax.set_yticklabels(labels)
     
-    # plt.legend(bbox_to_anchor=(0, 1), loc='upper left', ncol=1)
+    ax.set_ylabel("")
+    ax.set_xlabel("Percentage of residential Internet offers")
 
     ax.legend(handles=legend_elements[::-1],
               loc='lower left', 
@@ -454,12 +442,7 @@ def plot_race(df, location='National', isp='AT&T', price="$55"):
               frameon=False,
               prop={'size': 9.2})
 
-
-    labels = ax.get_xticks().tolist()
-    labels = [int(_* 100) for _ in labels]
-    labels[0] = "0%"
-    ax.set_xticklabels(labels)
-    ax.set_xlabel("Residential Internet offers")
+    ax.xaxis.set_major_formatter(mtick.PercentFormatter(1.0))
 
     ax.grid(which='major', 
             axis='x', 
