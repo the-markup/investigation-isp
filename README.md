@@ -1,6 +1,6 @@
 # Uncovering Disparities in Internet Service Offers
 
-This repository contains code to reproduce the findings featured in our story "Dollars to Megabits: You May Be Paying 400 Times as Much as your Neighbor for Internet" from our series Still Loading.
+This repository contains code to reproduce the findings featured in our story "[Dollars to Megabits: You May Be Paying 400 Times as Much as your Neighbor for Internet](https://themarkup.org/still-loading)" from our series [Still Loading](https://themarkup.org/still-loading).
 
 Our methodology is described in "[How We Uncovered Disparities in Internet Deals Offered to Disadvantaged Communities](https://themarkup.org/still-loading)".
 
@@ -53,6 +53,8 @@ This is also where we use logistic regression to adjust for business factors to 
 ### 4-verizon-spotcheck.ipynb
 A look into Verizon's price changes for limitations in the methdology.
 
+### 5-find-closest-fiber-address.ipynb
+Using scikit-learn's `BallTree` algorithim to find the closest address with blazing fast speeds (≥200 Mbps) for any address in a city. We used this to create the topper graphic in the main story.
 
 <hr>
 
