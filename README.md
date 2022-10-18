@@ -59,25 +59,25 @@ Here's a description of the columns
 
 | column                | description                                                                                                                               |
 |:----------------------|:------------------------------------------------------------------------------------------------------------------------------------------|
-| major_city            | The city we analzyed                                                                                                                      |
-| state                 | The state that the city is in                                                                                                             |
-| income_disparity      | whether there was a disparity among lower and upper income areas.                                                                         |
-| isp                   | The Internet Service Provider                                                                                                             |
-| pct_slow_lower_income | Percentage of addresses in lower income areas that were offered slow speeds (>25 Mbps)                                                    |
-| pct_slow_upper_income | Percentage of addresses in upper income areas that were offered slow speeds                                                               |
-| income_pct_pt_diff    | The percentage point difference between income groups offered slow speeds, if this was at or greater than 5, `income_disparity` is `True` |
-| uniform_speed         | Whether the city had virtually the same speeds offered, we omit these cities from out disparate outcome analysis.                         |
-| flag_income           | Why we did not analyze this city for income-based disparities.                                                                            |
-| race_disparity        | Whether there was a disparity among the most-White and least-White areas.                                                                 |
-| pct_slow_least_white  | Percentage of addresses in least-White areas that were offered slow speeds.                                                               |
-| pct_slow_most_white   | Percentage of addresses in most-White areas that were offered slow speeds                                                                 |
-| race_pct_pt_diff      | The percentage point difference between different the most-White and least-White areas.                                                   |
-| flag_race             | Why we did not analyze this city based on racial or ethnic groups.                                                                        |
-| redlining_disparity   | Whether there was a disparity among HOLC-rated areas.                                                                                     |
-| pct_slow_d_rated      | Percentage of addresses in historically D-rated areas that were offered slow speeds.                                                      |
-| pct_slow_ab_rated     | Percentage of addresses in historically A and B-rated areas that were offered slow speeds.                                                |
-| redlining_pct_pt_diff | The percentage point difference between historic HOLC-rated neighborhoods offered slow speeds.                                            |
-| flag_redlining        | Why we did not analyze this city with redlining grades                                                                                    |
+| `major_city`           | The city we analzyed                                                                                                                      |
+| `state`                 | The state that the city is in                                                                                                             |
+| `income_disparity`      | whether there was a disparity among lower and upper income areas.                                                                         |
+| `isp`                   | The Internet Service Provider                                                                                                             |
+| `pct_slow_lower_income` | Percentage of addresses in lower income areas that were offered slow speeds (>25 Mbps)                                                    |
+| `pct_slow_upper_income` | Percentage of addresses in upper income areas that were offered slow speeds                                                               |
+| `income_pct_pt_diff`    | The percentage point difference between income groups offered slow speeds, if this was at or greater than 5, `income_disparity` is `True` |
+| `uniform_speed`         | Whether the city had virtually the same speeds offered, we omit these cities from out disparate outcome analysis.                         |
+| `flag_income`           | Why we did not analyze this city for income-based disparities.                                                                            |
+| `race_disparity`        | Whether there was a disparity among the most-White and least-White areas.                                                                 |
+| `pct_slow_least_white`  | Percentage of addresses in least-White areas that were offered slow speeds.                                                               |
+| `pct_slow_most_white`   | Percentage of addresses in most-White areas that were offered slow speeds                                                                 |
+| `race_pct_pt_diff`      | The percentage point difference between different the most-White and least-White areas.                                                   |
+| `flag_race`             | Why we did not analyze this city based on racial or ethnic groups.                                                                        |
+| `redlining_disparity`   | Whether there was a disparity among HOLC-rated areas.                                                                                     |
+| `pct_slow_d_rated`      | Percentage of addresses in historically D-rated areas that were offered slow speeds.                                                      |
+| `pct_slow_ab_rated`     | Percentage of addresses in historically A and B-rated areas that were offered slow speeds.                                                |
+| `redlining_pct_pt_diff` | The percentage point difference between historic HOLC-rated neighborhoods offered slow speeds.                                            |
+| `flag_redlining`        | Why we did not analyze this city with redlining grades                                                                                    |
 
 This file was generated in `notebooks/3-statistical-tests-and-regression.ipynb`.
 
@@ -88,32 +88,32 @@ Here's what you will find in that file:
 
 | column                      | description                                                                                                                                    |
 |:----------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
-| address_full                | The complete postal address of a household we searched.                                                                                        |
-| incorporated_place          | The incorporated city that the address belongs to                                                                                              |
-| major_city                  | The city that the address is in.                                                                                                               |
-| state                       | The state the that the address is in.                                                                                                          |
-| lat                         | The latitudinal coordinate that the address is in.                                                                                             |
-| lon                         | The Longitudinal coorindate that the address is in.                                                                                            |
-| block_group                 | The census block group of the address as of 2019.                                                                                              |
-| collection_datetime         | The unix timestamp that the address was used to query the provider's website                                                                   |
-| provider                    | The internet service provider                                                                                                                  |
-| speed_down                  | Cheapest advertised download speed for the address.                                                                                            |
-| speed_up                    | Cheapest advertised upload speed for the address.                                                                                              |
-| speed_unit                  | The unit of speed, should always be Megabits per second (Mbps).                                                                                |
-| price                       | The cost in USD of the cheapest advertised internet plan for the address                                                                       |
-| technology                  | The kind of technology (Fiber or non-Fiber) used to serve the cheapest internet plan                                                           |
-| package                     | The name of the cheapest internet plan                                                                                                         |
-| fastest_speed_down          | The advertised download speed of the fastest package. This is usually the same as the cheapest plan if the `speed_down` is less than 200 Mbps. |
-| fastest_speed_price         | The advertised upload speed of the fastest internet package for the address.                                                                   |
-| fn                          | The name of the file of API responses where this record was parsed from.                                                                       |
-| redlining_grade             | The redlining grade, merged from Mapping Inequality based on the `lat` and `lon` of the adddress.                                              |
-| race_perc_non_white         | The percentage of people of color (not non-Hispanic White) in the Census block group. Sourced from the 2019 5-year American Community Survey.  |
-| income_lmi                  | `median_household_income` divided by the city median household income.                                                                         |
-| ppl_per_sq_mile             | People per square mile is used to determine population density. Sourced from 2019 TIGER shape files from the U.S. Census Bureau.               |
-| n_providers                 | The number of other competitors in the addresses  Census block group. Sourced from FCC form 477.                                               |
-| income_dollars_below_median | City median household income minus the `median_household_income`.                                                                              |
-| internet_perc_broadband     | The percentage of the population that is already subscriped to broadband in an addresses' Census block group.                                  |
-| median_household_income     | The median household income in the addresses' Census block group. Sourced from the 2019 5-year American Community Survey                       |
+| `address_full`                | The complete postal address of a household we searched.                                                                                        |
+| `incorporated_place`          | The incorporated city that the address belongs to                                                                                              |
+| `major_city`                  | The city that the address is in.                                                                                                               |
+| `state`                       | The state the that the address is in.                                                                                                          |
+| `lat`                         | The latitudinal coordinate that the address is in.                                                                                             |
+| `lon`                         | The Longitudinal coorindate that the address is in.                                                                                            |
+| `block_group`                 | The census block group of the address as of 2019.                                                                                              |
+| `collection_datetime`         | The unix timestamp that the address was used to query the provider's website                                                                   |
+| `provider`                    | The internet service provider                                                                                                                  |
+| `speed_down`                  | Cheapest advertised download speed for the address.                                                                                            |
+| `speed_up`                    | Cheapest advertised upload speed for the address.                                                                                              |
+| `speed_unit`                  | The unit of speed, should always be Megabits per second (Mbps).                                                                                |
+| `price`                       | The cost in USD of the cheapest advertised internet plan for the address                                                                       |
+| `technology`                  | The kind of technology (Fiber or non-Fiber) used to serve the cheapest internet plan                                                           |
+| `package`                     | The name of the cheapest internet plan                                                                                                         |
+| `fastest_speed_down`          | The advertised download speed of the fastest package. This is usually the same as the cheapest plan if the `speed_down` is less than 200 Mbps. |
+| `fastest_speed_price`         | The advertised upload speed of the fastest internet package for the address.                                                                   |
+| `fn`                          | The name of the file of API responses where this record was parsed from.                                                                       |
+| `redlining_grade`             | The redlining grade, merged from Mapping Inequality based on the `lat` and `lon` of the adddress.                                              |
+| `race_perc_non_white`         | The percentage of people of color (not non-Hispanic White) in the Census block group. Sourced from the 2019 5-year American Community Survey.  |
+| `income_lmi`                  | `median_household_income` divided by the city median household income.                                                                         |
+| `ppl_per_sq_mile`             | People per square mile is used to determine population density. Sourced from 2019 TIGER shape files from the U.S. Census Bureau.               |
+| `n_providers`                 | The number of other competitors in the addresses  Census block group. Sourced from FCC form 477.                                               |
+| `income_dollars_below_median` | City median household income minus the `median_household_income`.                                                                              |
+| `internet_perc_broadband`     | The percentage of the population that is already subscriped to broadband in an addresses' Census block group.                                  |
+| `median_household_income `    | The median household income in the addresses' Census block group. Sourced from the 2019 5-year American Community Survey                       |
 
 This dataset was created in `notebooks/1-process-offers.ipynb`. 
 
