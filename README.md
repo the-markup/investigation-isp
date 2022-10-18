@@ -53,7 +53,7 @@ data
 ```
 
 ### Summary of Disparities
-A summary of disparties for each city and provider can be found in `data/output/tables/table1_cities_ranked_by_categories`.
+A summary of disparties for each city and provider can be found in `data/output/tables/table1_disparities_by_city.csv`.
 
 Here's a description of the columns
 
