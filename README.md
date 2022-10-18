@@ -52,7 +52,31 @@ data
     └── tables
 ```
 
-A [summary](https://github.com/the-markup/investigation-isp/blob/main/data/output/tables/table1_cities_ranked_by_categories.csv) of disparties for each city and provider across socioeconomic categories can be found in `data/output/tables/table1_cities_ranked_by_categories`.
+A [summary](https://github.com/the-markup/investigation-isp/blob/main/data/output/tables/table1_cities_ranked_by_categories.csv) of disparties for each city and provider can be found in `data/output/tables/table1_cities_ranked_by_categories`.
+
+Here's a description of the columns
+
+| column                | description                                                                                                                               |
+|:----------------------|:------------------------------------------------------------------------------------------------------------------------------------------|
+| major_city            | The city we analzyed                                                                                                                      |
+| state                 | The state that the city is in                                                                                                             |
+| income_disparity      | whether there was a disparity among lower and upper income areas.                                                                         |
+| isp                   | The Internet Service Provider                                                                                                             |
+| pct_slow_lower_income | Percentage of addresses in lower income areas that were offered slow speeds (>25 Mbps)                                                    |
+| pct_slow_upper_income | Percentage of addresses in upper income areas that were offered slow speeds                                                               |
+| income_pct_pt_diff    | The percentage point difference between income groups offered slow speeds, if this was at or greater than 5, `income_disparity` is `True` |
+| uniform_speed         | Whether the city had virtually the same speeds offered, we omit these cities from out disparate outcome analysis.                         |
+| flag_income           | Why we did not analyze this city for income-based disparities.                                                                            |
+| race_disparity        | Whether there was a disparity among the most-White and least-White areas.                                                                 |
+| pct_slow_least_white  | Percentage of addresses in least-White areas that were offered slow speeds.                                                               |
+| pct_slow_most_white   | Percentage of addresses in most-White areas that were offered slow speeds                                                                 |
+| race_pct_pt_diff      | The percentage point difference between different the most-White and least-White areas.                                                   |
+| flag_race             | Why we did not analyze this city based on racial or ethnic groups.                                                                        |
+| redlining_disparity   | Whether there was a disparity among HOLC-rated areas.                                                                                     |
+| pct_slow_d_rated      | Percentage of addresses in historically D-rated areas that were offered slow speeds.                                                      |
+| pct_slow_ab_rated     | Percentage of addresses in historically A and B-rated areas that were offered slow speeds.                                                |
+| redlining_pct_pt_diff | The percentage point difference between historic HOLC-rated neighborhoods offered slow speeds.                                            |
+| flag_redlining        | Why we did not analyze this city with redlining grades                                                                                    |
 
 Address-level Internet service plans for each provider are stored in the `data/output/` directory, the file for AT&T is called `data/output/speed_price_att.csv.gz`.
 
@@ -162,23 +186,29 @@ We wrote a story recipe guide to help do that, and below is a list of each city 
  - Washington ([Verizon](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/washington_verizon_plans.csv)) 
  - Wichita, Kan. ([AT&T](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/wichita_at&t_plans.csv), [EarthLink](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/wichita_earthlink_plans.csv)) 
 
-To view an interactive address-level map for any of these cities, you can download the [Kepler.gl](https://https://kepler.gl/) maps for each provider.
 
-Click the link to download an HTML file for the provider you are interested in, and open the HTML file in a web browser. (You can do this by dragging the file into the browser.)
+### Localized Maps
+To view an interactive address-level map for the cities in our investigation, you can download the [Kepler.gl](https://https://kepler.gl/) maps for each provider.
+
+Click the any of the links below to download an HTML file for the provider you are interested in.
 
 - Map for [AT&T](https://markup-public-data.s3.amazonaws.com/isp/at%26t-kepler.gl.html)
 - Map for [CenturyLink](https://markup-public-data.s3.amazonaws.com/isp/centurylink-kepler.gl.html)
 - Map for [EarthLink](https://markup-public-data.s3.amazonaws.com/isp/earthlink-kepler.gl.html)
 - Map for [Verizon](https://markup-public-data.s3.amazonaws.com/isp/verizon-kepler.gl.html)
 
-Once the file is open in a browser, use the search bar for specific addresses or cities to quick travel. If you would like an overlay of any socioeconomic factor, we can produce them by request.
+Once downloaded, open the HTML file in a web browser. (You can do this by dragging the file into the browser.) 
 
-These maps should be viewed with summaries of how speeds vary across each city. Please refer to the [methodology]() or this [file](https://github.com/the-markup/investigation-isp/blob/main/data/output/tables/table1_cities_ranked_by_categories.csv) to how large disparities are between areas of the same city.
+Now you can use the search bar to quick travel to specific addresses or cities. If you know the areas, this will be immediately useful. However, if you would like an overlay of any socioeconomic factor in our investigation (median household income, the percentage of non-Hispanic Whites, or redlining grades we can produce them by request.
+
+These maps should be viewed with summaries of how speeds vary across each city and between areas.
+
+Please refer to the [methodology]() or this [file](https://github.com/the-markup/investigation-isp/blob/main/data/output/tables/table1_cities_ranked_by_categories.csv) to how large disparities are between areas of the same city.
 
 
 ## Installation
 ### Python
-Make sure you have Python 3.8+ installed, we used [Miniconda](https://docs.conda.io/en/latest/miniconda.html) to create a Python 3.8 virtual environment.
+Make sure you have Python 3.8+ installed, we used [Miniconda](https://docs.conda.io/en/latest/miniconda.html) to create a Python 3.8 [virtual environment](https://stackoverflow.com/a/56713819).
 
 
 Install the Python packages with pip:<br>
