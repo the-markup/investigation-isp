@@ -1,8 +1,8 @@
-# Uncovering Disparities in Internet Service Offers
+# How We Uncovered Disparities in Internet Service Offers
 
-This repository contains code to reproduce the findings featured in our story "[Dollars to Megabits: You May Be Paying 400 Times as Much as your Neighbor for Internet](https://themarkup.org/still-loading)" from our series [Still Loading](https://themarkup.org/still-loading).
+This repository contains code to reproduce the findings featured in our investigation "[Dollars to Megabits: You May Be Paying 400 Times as Much as your Neighbor for Internet](https://themarkup.org/still-loading)" from the series [Still Loading](https://themarkup.org/still-loading).
 
-Our methodology is described in "[How We Uncovered Disparities in Internet Deals Offered to Disadvantaged Communities](https://themarkup.org/still-loading)".
+Our methodology is described in detail in "[How We Uncovered Disparities in Internet Deals Offered to Disadvantaged Communities](https://themarkup.org/still-loading)".
 
 Data that we collected and analyzed are in the `data` folder.
 
@@ -79,12 +79,12 @@ Here's a description of the columns
 | redlining_pct_pt_diff | The percentage point difference between historic HOLC-rated neighborhoods offered slow speeds.                                            |
 | flag_redlining        | Why we did not analyze this city with redlining grades                                                                                    |
 
-This file was generated in `notebooks/3-statistical-tests-and-logistic-regression.ipynb`.
+This file was generated in `notebooks/3-statistical-tests-and-regression.ipynb`.
 
 ### Offers by address
 Address-level Internet service plans for each provider are stored in the `data/output/` directory, the file for AT&T is called `data/output/speed_price_att.csv.gz`.
 
-A data dictionary for this file:
+Here's what you will find in that file:
 
 | column                      | description                                                                                                                                    |
 |:----------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -115,32 +115,9 @@ A data dictionary for this file:
 | internet_perc_broadband     | The percentage of the population that is already subscriped to broadband in an addresses' Census block group.                                  |
 | median_household_income     | The median household income in the addresses' Census block group. Sourced from the 2019 5-year American Community Survey                       |
 
-This dataset is created in `notebooks/1-process-offers.ipynb`. You can find a similar file for inidividuals cities, [below](#Localized-datasets).
+This dataset was created in `notebooks/1-process-offers.ipynb`. 
 
-
-### What else is in the data directory?
-Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figs`, respectively.
-
-The `data/` directory also features `data/input/` and `data/intermediary/` for files that were collected and processed to create the `data/output` files mentioned above. The complete directory is not stored on GitHub due to space restrictions. Go to the [the next section](#Download-all-data) to access this data. 
-
-Address data was downloaded from [OpenSources](https://opensources.io) and [NYC Open Data](https://data.cityofnewyork.us/City-Government/NYC-Address-Points/g6pj-hd8k) and grouped and into block groups in `data/input/isp` as [gzip](https://www.gzip.org/)ped-[GeoJSON](https://geojson.org/) files. 
-
-These records get fed into lookup tools for each ISP's website. Raw API responses from lookup tools are saved by block group in `data/intermediary/isp`. 
-
-We collected demographic data from the 2019 American Community Survey (`data/intermediary/census`), historic redlining grades (`data/input/redlining`) from University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58&text=intro) project.
-
-### Download all data
-You can find all the input and intermediary files hosted externally in AWS S3:
-```
-s3://markup-public-data/isp/isp-input.tar.xz
-s3://markup-public-data/isp/isp-intermedairy.tar.xz
-```
-
-These can be downloaded locally using `data/download_external_data.sh`.
-
-`s3://markup-public-data/isp/input.tar.xz` is about 7.7 GB uncompressed and contains open source addresses (`data/input/addresses/open_addresses_enriched` and `data/input/isp`), bulk data from government sources: the census (`data/input/census/acs5/`) and FCC (`data/input/fcc/fbd_us_with_satellite_dec2020_v1.csv.gz`). 
-
-`s3://markup-public-data/isp/isp-intermedairy.tar.xz` is about 5.7 GB uncompressed and contains API responses from each ISP (`data/intermediary/isp/`) appended to the geographic data we pulled in above.
+You can find a similar file for inidividuals cities, [below](#Localized-datasets).
 
 ### Localized datasets
 Do you want to write a local story based on the data we collected?
@@ -206,7 +183,30 @@ These maps should be viewed with summaries of how speeds vary across each city a
 Please refer to the [methodology]() or this summary [file](#summary-of-disparities) to see how large disparities are between areas of the same city.
 
 
-## Installation
+### What else is in the data directory?
+Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figs`, respectively.
+
+The `data` directory also features `data/input` and `data/intermediary` files that were collected and processed to create the files in `data/output`. Their entirety is not stored in GitHub due to space restrictions. Go to the [the next section](#Download-all-data) to access this data. 
+
+In the `data/input` we stored historical redlining maps that were digitized by University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58&text=intro) project, as well as [TIGER](https://www.census.gov/cgi-bin/geo/shapefiles/index.php) shapefiles from the U.S. Census.
+
+In `data/intermediary` you will find aggregated data from the American Community Survey, and the FCC's Form 477.
+
+### Download all data
+You can find the remaining input and intermediary files hosted externally in AWS S3:
+```
+s3://markup-public-data/isp/isp-input.tar.xz
+s3://markup-public-data/isp/isp-intermedairy.tar.xz
+```
+
+`s3://markup-public-data/isp/input.tar.xz` is about 7.7 GB uncompressed and contains open source addresses (`data/input/addresses/open_addresses_enriched` and `data/input/isp`), bulk data from government sources: the  U.S. Census (`data/input/census/acs5/`) and FCC Form 477 (`data/input/fcc/fbd_us_with_satellite_dec2020_v1.csv.gz`). 
+
+`s3://markup-public-data/isp/isp-intermedairy.tar.xz` is about 5.7 GB uncompressed and contains API responses from each ISP (`data/intermediary/isp/`) appended to the geographic data we pulled in above. It also contains 
+
+For your convenience we wrote a script to download the files, here: `data/download_external_data.sh`.
+
+
+## Setup
 ### Python
 Make sure you have Python 3.8+ installed, we used [Miniconda](https://docs.conda.io/en/latest/miniconda.html) to create a Python 3.8 [virtual environment](https://stackoverflow.com/a/56713819).
 
@@ -256,12 +256,3 @@ Used to aggregate data and produce charts in notebooks starting with "2".
 
 ### parsers.py
 Parses JSON from lookup tools and geocodes addresses within HOLC grades. See examples of the JSON in `data/intermediary/isp`, or [download](#Download-all-data) all the data.
-
-### config.py
-Contains shared variables used throughout notebooks.
-
-### istarmap.py
-Monkeypatch of `Multiprocessing.Pool` so we can run statsmodels using multiple cores. Used in `3-statistical-tests-and-regression.ipynb`
-
-
-
