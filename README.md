@@ -1,6 +1,6 @@
 # How We Uncovered Disparities in Internet Service Offers
 
-This repository contains code to reproduce the findings featured in our investigation "[Dollars to Megabits: You May Be Paying 400 Times as Much as your Neighbor for Internet](https://themarkup.org/still-loading)" from the series [Still Loading](https://themarkup.org/still-loading).
+This repository contains code to reproduce the findings of our investigation "[Dollars to Megabits: You May Be Paying 400 Times as Much as your Neighbor for Internet](https://themarkup.org/still-loading)" from the series [Still Loading](https://themarkup.org/still-loading).
 
 Our methodology is described in detail in "[How We Uncovered Disparities in Internet Deals Offered to Disadvantaged Communities](https://themarkup.org/still-loading)".
 
@@ -10,7 +10,7 @@ Jupyter notebooks used for data collection, preprocessing and analysis are in th
 
 
 ## Data
-The `data/` directory is where inputs, intermediaries and outputs are saved.
+This directory is where inputs, intermediaries and outputs are saved.
 
 Here is an overview of how the directory is organized:
 
