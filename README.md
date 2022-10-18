@@ -10,7 +10,7 @@ Jupyter notebooks used for data collection, preprocessing and analysis are in th
 
 
 ## Data
-This directory is where inputs, intermediaries and outputs are saved.
+The `data/` directory is where inputs, intermediaries and outputs are saved.
 
 Here is an overview of how the directory is organized:
 
@@ -52,6 +52,7 @@ data
     └── tables
 ```
 
+### Summary of Disparities
 A [summary](https://github.com/the-markup/investigation-isp/blob/main/data/output/tables/table1_cities_ranked_by_categories.csv) of disparties for each city and provider can be found in `data/output/tables/table1_cities_ranked_by_categories`.
 
 Here's a description of the columns
@@ -78,6 +79,7 @@ Here's a description of the columns
 | redlining_pct_pt_diff | The percentage point difference between historic HOLC-rated neighborhoods offered slow speeds.                                            |
 | flag_redlining        | Why we did not analyze this city with redlining grades                                                                                    |
 
+### Offers by address
 Address-level Internet service plans for each provider are stored in the `data/output/` directory, the file for AT&T is called `data/output/speed_price_att.csv.gz`.
 
 A data dictionary for this file:
@@ -203,7 +205,7 @@ Now you can use the search bar to quick travel to specific addresses or cities. 
 
 These maps should be viewed with summaries of how speeds vary across each city and between areas.
 
-Please refer to the [methodology]() or this [file](https://github.com/the-markup/investigation-isp/blob/main/data/output/tables/table1_cities_ranked_by_categories.csv) to how large disparities are between areas of the same city.
+Please refer to the [methodology]() or this [file](#summary-of-disparities) to how large disparities are between areas of the same city.
 
 
 ## Installation
