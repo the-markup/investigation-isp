@@ -53,7 +53,7 @@ data
 ```
 
 ### Summary of Disparities
-A [summary](https://github.com/the-markup/investigation-isp/blob/main/data/output/tables/table1_cities_ranked_by_categories.csv) of disparties for each city and provider can be found in `data/output/tables/table1_cities_ranked_by_categories`.
+A summary of disparties for each city and provider can be found in `data/output/tables/table1_cities_ranked_by_categories`.
 
 Here's a description of the columns
 
@@ -78,6 +78,8 @@ Here's a description of the columns
 | pct_slow_ab_rated     | Percentage of addresses in historically A and B-rated areas that were offered slow speeds.                                                |
 | redlining_pct_pt_diff | The percentage point difference between historic HOLC-rated neighborhoods offered slow speeds.                                            |
 | flag_redlining        | Why we did not analyze this city with redlining grades                                                                                    |
+
+This file was generated in `notebooks/3-statistical-tests-and-logistic-regression.ipynb`.
 
 ### Offers by address
 Address-level Internet service plans for each provider are stored in the `data/output/` directory, the file for AT&T is called `data/output/speed_price_att.csv.gz`.
@@ -113,26 +115,22 @@ A data dictionary for this file:
 | internet_perc_broadband     | The percentage of the population that is already subscriped to broadband in an addresses' Census block group.                                  |
 | median_household_income     | The median household income in the addresses' Census block group. Sourced from the 2019 5-year American Community Survey                       |
 
+This dataset is created in `notebooks/1-process-offers.ipynb`. You can find a similar file for inidividuals cities, [below](#Localized-datasets).
 
-You can find a similar file for inidividuals cities, [below](#Localized-datasets).
 
+### What else is in the data directory?
 Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figs`, respectively.
 
-The `data/` directory also features `data/input/` and `data/intermediary/` for files that were collected and processed to create the `data/output` files mentioned above. The complete directory is not stored on GitHub due to space restrictions. See [end of this section](#Download-all-data) on how to access this data. 
+The `data/` directory also features `data/input/` and `data/intermediary/` for files that were collected and processed to create the `data/output` files mentioned above. The complete directory is not stored on GitHub due to space restrictions. Go to the [the next section](#Download-all-data) to access this data. 
 
 Address data was downloaded from [OpenSources](https://opensources.io) and [NYC Open Data](https://data.cityofnewyork.us/City-Government/NYC-Address-Points/g6pj-hd8k) and grouped and into block groups in `data/input/isp` as [gzip](https://www.gzip.org/)ped-[GeoJSON](https://geojson.org/) files. 
 
-These records get fed into lookup tools for each ISP's webszite. Raw API responses from lookup tools are saved by block group in `data/intermediary/isp`. 
-
-We provide one file as an example of a block group's data on this directory.
+These records get fed into lookup tools for each ISP's website. Raw API responses from lookup tools are saved by block group in `data/intermediary/isp`. 
 
 We collected demographic data from the 2019 American Community Survey (`data/intermediary/census`), historic redlining grades (`data/input/redlining`) from University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58&text=intro) project.
 
-
 ### Download all data
-You can find all of the other input and intermediary files hosted externally.
-
-You can find them hosted as xz-compressed archives in AWS S3 here:
+You can find all the input and intermediary files hosted externally in AWS S3:
 ```
 s3://markup-public-data/isp/isp-input.tar.xz
 s3://markup-public-data/isp/isp-intermedairy.tar.xz
@@ -140,14 +138,14 @@ s3://markup-public-data/isp/isp-intermedairy.tar.xz
 
 These can be downloaded locally using `data/download_external_data.sh`.
 
-`s3://markup-public-data/isp/input.tar.xz` is about 7.7 GB compressed and contains open source addresses (`data/input/addresses/open_addresses_enriched` and `data/input/isp`), bulk data from government sources: the census (`data/input/census/acs5/`) and FCC (`data/input/fcc/fbd_us_with_satellite_dec2020_v1.csv.gz`). 
+`s3://markup-public-data/isp/input.tar.xz` is about 7.7 GB uncompressed and contains open source addresses (`data/input/addresses/open_addresses_enriched` and `data/input/isp`), bulk data from government sources: the census (`data/input/census/acs5/`) and FCC (`data/input/fcc/fbd_us_with_satellite_dec2020_v1.csv.gz`). 
 
-`s3://markup-public-data/isp/isp-intermedairy.tar.xz` is about 5.7 GB and contains API responses from each ISP (`data/intermediary/isp/`) appended to the geographic data we pulled in above.
+`s3://markup-public-data/isp/isp-intermedairy.tar.xz` is about 5.7 GB uncompressed and contains API responses from each ISP (`data/intermediary/isp/`) appended to the geographic data we pulled in above.
 
 ### Localized datasets
 Do you want to write a local story based on the data we collected?
 
-We wrote a story recipe guide to help do that, and below is a list of each city we collected, and a link to the street-level data for each. Note that the data has been categorized based on an addresses' surrounding socioeconomics.
+We wrote a story recipe guide to help do that, and have made street-level data for each city and provider available here:
 
  - Albuquerque, N.M. ([CenturyLink](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/albuquerque_centurylink_plans.csv), [EarthLink](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/albuquerque_earthlink_plans.csv)) 
  - Atlanta, Ga. ([AT&T](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/atlanta_at&t_plans.csv), [EarthLink](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/atlanta_earthlink_plans.csv)) 
@@ -201,11 +199,11 @@ Click the any of the links below to download an HTML file for the provider you a
 
 Once downloaded, open the HTML file in a web browser. (You can do this by dragging the file into the browser.) 
 
-Now you can use the search bar to quick travel to specific addresses or cities. If you know the areas, this will be immediately useful. However, if you would like an overlay of any socioeconomic factor in our investigation (median household income, the percentage of non-Hispanic Whites, or redlining grades we can produce them by request.
+Now you can use the search bar to quick travel to specific addresses or cities. If you know the areas, this will be immediately useful. However, if you would like an overlay of any socioeconomic factor in our investigation (median household income, the percentage of non-Hispanic Whites in the area, or redlining grades) we can produce them by request.
 
 These maps should be viewed with summaries of how speeds vary across each city and between areas.
 
-Please refer to the [methodology]() or this [file](#summary-of-disparities) to how large disparities are between areas of the same city.
+Please refer to the [methodology]() or this summary [file](#summary-of-disparities) to see how large disparities are between areas of the same city.
 
 
 ## Installation
