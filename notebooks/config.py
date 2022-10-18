@@ -252,4 +252,4 @@ redlininggrade2name = {
     'D' : 'D - Hazardous',
 }
 
-race_labels = ['most white', 'more white', 'less while', 'least white']
+race_labels = ['most white', 'more white', 'less white', 'least white']

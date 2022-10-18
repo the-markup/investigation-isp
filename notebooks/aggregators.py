@@ -29,7 +29,8 @@ def aspirational_quartile(series, labels):
     return pd.cut(
         series,
         bins=bins,
-        labels=labels
+        labels=labels,
+        include_lowest=True
     )
 
 
