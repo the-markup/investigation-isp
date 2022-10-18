@@ -55,11 +55,11 @@ data
 
 Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figs`, respectively.
 
-The `data` directory also features `data/input` and `data/intermediary` files that were collected and processed to create the files in `data/output`. Their entirety is not stored in GitHub due to space restrictions. Go to the [the next section](#Download-all-data) to access this data. 
+The `data` directory also features `data/input` and `data/intermediary` files that were collected and processed to create the files in `data/output`. Their entirety is not stored in GitHub due to space restrictions. See [the section below](#Download-all-data) to access this data. 
 
-In the `data/input` we stored historical redlining maps that were digitized by University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58&text=intro) project, as well as [TIGER](https://www.census.gov/cgi-bin/geo/shapefiles/index.php) shapefiles from the U.S. Census.
+In the `data/input` we stored historical redlining maps that were digitized by University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58&text=intro) project (`data/input/redlining`), as well as [TIGER](https://www.census.gov/cgi-bin/geo/shapefiles/index.php) shapefiles from the U.S. Census (`data/input/census/shape`).
 
-In `data/intermediary` you will find aggregated data from the American Community Survey, and the FCC's Form 477.
+In `data/intermediary` you will find aggregated data from the American Community Survey (`data/intermediary/census`), and the FCC's Form 477 (`data/intermediary/fcc/bg_providers.csv`).
 
 <hr>
 
@@ -150,7 +150,7 @@ Do you want to write a local story based on the data we collected? We wrote a [s
 
 
 ### Offer Maps
-To view an interactive address-level map for the cities in our investigation, you can download the [Kepler.gl](https://https://kepler.gl/) maps for each provider.
+To view an interactive address-level map for the cities in our investigation, you can download the [Kepler.gl](https://kepler.gl/) maps for each provider.
 
 Click any of the links below to view a map for the provider you are interested in.
 
