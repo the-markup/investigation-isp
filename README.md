@@ -1,12 +1,13 @@
 # How We Uncovered Disparities in Internet Service Offers
 
-This repository contains code to reproduce the findings of our investigation "[Dollars to Megabits: You May Be Paying 400 Times as Much as your Neighbor for Internet](https://themarkup.org/still-loading)" from the series [Still Loading](https://themarkup.org/still-loading).
+This repository contains code and data supporting our investigation "[Dollars to Megabits: You May Be Paying 400 Times as Much as your Neighbor for Internet](https://themarkup.org/still-loading)" from the series [Still Loading](https://themarkup.org/still-loading).
 
 Our methodology is described in detail in "[How We Uncovered Disparities in Internet Deals Offered to Disadvantaged Communities](https://themarkup.org/still-loading)".
 
-Data that we collected and analyzed are in the `data` folder.
+Please read that document to understand the context for the code and data in this repository.
+The data in this repository, described in more detail below, include the results of our automated collecting of ISP offers, plus records from the Census and other sources necessary for the analysis. 
 
-Jupyter notebooks used for data collection, preprocessing and analysis are in the `notebooks` folder.
+The code in this repository, also described in more detail below, demonstrates how we processed and analyzed that data. 
 
 
 ## Data
@@ -52,77 +53,61 @@ data
     └── tables
 ```
 
-### Summary of Disparities
-A summary of disparties for each city and provider can be found in `data/output/tables/table1_disparities_by_city.csv`.
+Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figs`, respectively.
 
-Here's a description of the columns
+The `data` directory also features `data/input` and `data/intermediary` files that were collected and processed to create the files in `data/output`. Their entirety is not stored in GitHub due to space restrictions. Go to the [the next section](#Download-all-data) to access this data. 
 
-| column                | description                                                                                                                               |
-|:----------------------|:------------------------------------------------------------------------------------------------------------------------------------------|
-| `major_city`           | The city we analzyed                                                                                                                      |
-| `state`                 | The state that the city is in                                                                                                             |
-| `income_disparity`      | whether there was a disparity among lower and upper income areas.                                                                         |
-| `isp`                   | The Internet Service Provider                                                                                                             |
-| `pct_slow_lower_income` | Percentage of addresses in lower income areas that were offered slow speeds (>25 Mbps)                                                    |
-| `pct_slow_upper_income` | Percentage of addresses in upper income areas that were offered slow speeds                                                               |
-| `income_pct_pt_diff`    | The percentage point difference between income groups offered slow speeds, if this was at or greater than 5, `income_disparity` is `True` |
-| `uniform_speed`         | Whether the city had virtually the same speeds offered, we omit these cities from out disparate outcome analysis.                         |
-| `flag_income`           | Why we did not analyze this city for income-based disparities.                                                                            |
-| `race_disparity`        | Whether there was a disparity among the most-White and least-White areas.                                                                 |
-| `pct_slow_least_white`  | Percentage of addresses in least-White areas that were offered slow speeds.                                                               |
-| `pct_slow_most_white`   | Percentage of addresses in most-White areas that were offered slow speeds                                                                 |
-| `race_pct_pt_diff`      | The percentage point difference between different the most-White and least-White areas.                                                   |
-| `flag_race`             | Why we did not analyze this city based on racial or ethnic groups.                                                                        |
-| `redlining_disparity`   | Whether there was a disparity among HOLC-rated areas.                                                                                     |
-| `pct_slow_d_rated`      | Percentage of addresses in historically D-rated areas that were offered slow speeds.                                                      |
-| `pct_slow_ab_rated`     | Percentage of addresses in historically A and B-rated areas that were offered slow speeds.                                                |
-| `redlining_pct_pt_diff` | The percentage point difference between historic HOLC-rated neighborhoods offered slow speeds.                                            |
-| `flag_redlining`        | Why we did not analyze this city with redlining grades                                                                                    |
+In the `data/input` we stored historical redlining maps that were digitized by University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58&text=intro) project, as well as [TIGER](https://www.census.gov/cgi-bin/geo/shapefiles/index.php) shapefiles from the U.S. Census.
 
-This file was generated in `notebooks/3-statistical-tests-and-regression.ipynb`.
+In `data/intermediary` you will find aggregated data from the American Community Survey, and the FCC's Form 477.
+
+<hr>
+
+Below, we highlight three components of the data that we believe others will find most useful: all offers collected, by ISP; all offers collected, by ISP and city; and summary data regarding the disparities observed for each city-ISP combination.
 
 ### Offers by address
-Address-level Internet service plans for each provider are stored in the `data/output/` directory, the file for AT&T is called `data/output/speed_price_att.csv.gz`.
+The address-level Internet service offers we collected are stored in the data/output/ directory, with one file per Internet service provider. (For instance, `data/output/speed_price_att.csv.gz` contains the offers we collected from AT&T.).
 
-Here's what you will find in that file:
+Those files contain the following columns:
 
 | column                      | description                                                                                                                                    |
 |:----------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
 | `address_full`                | The complete postal address of a household we searched.                                                                                        |
-| `incorporated_place`          | The incorporated city that the address belongs to                                                                                              |
+| `incorporated_place`          | The incorporated city that the address belongs to.                                                                                              |
 | `major_city`                  | The city that the address is in.                                                                                                               |
-| `state`                       | The state the that the address is in.                                                                                                          |
-| `lat`                         | The latitudinal coordinate that the address is in.                                                                                             |
-| `lon`                         | The Longitudinal coorindate that the address is in.                                                                                            |
-| `block_group`                 | The census block group of the address as of 2019.                                                                                              |
-| `collection_datetime`         | The unix timestamp that the address was used to query the provider's website                                                                   |
-| `provider`                    | The internet service provider                                                                                                                  |
+| `state`                       | The state that the address is in.                                                                                                          |
+| `lat`                         | The address’s latitude. From openaddresses or NYC open data.                                          |
+| `lon`                         | The address’s longitude. From openaddresses or NYC open data.                                           |
+| `block_group`                 | The Census block group of the address, as of 2019. From the Census Geocoder API based on `lat` and `lon`.                                                                                              |
+| `collection_datetime`         | The Unix timestamp that the address was used to query the provider's website.                                                                   |
+| `provider`                    | The internet service provider.                                                                                                                  |
 | `speed_down`                  | Cheapest advertised download speed for the address.                                                                                            |
 | `speed_up`                    | Cheapest advertised upload speed for the address.                                                                                              |
-| `speed_unit`                  | The unit of speed, should always be Megabits per second (Mbps).                                                                                |
-| `price`                       | The cost in USD of the cheapest advertised internet plan for the address                                                                       |
-| `technology`                  | The kind of technology (Fiber or non-Fiber) used to serve the cheapest internet plan                                                           |
-| `package`                     | The name of the cheapest internet plan                                                                                                         |
+| `speed_unit`                  | The unit of speed. This is always in Megabits per second (Mbps).                                                                                |
+| `price`                       | The cost in USD of the cheapest advertised internet plan for the address.                                                                       |
+| `technology`                  | The kind of technology (fiber or non-fiber) used to serve the cheapest internet plan.                                                           |
+| `package`                     | The name of the cheapest internet plan.                                                                                                         |
 | `fastest_speed_down`          | The advertised download speed of the fastest package. This is usually the same as the cheapest plan if the `speed_down` is less than 200 Mbps. |
 | `fastest_speed_price`         | The advertised upload speed of the fastest internet package for the address.                                                                   |
-| `fn`                          | The name of the file of API responses where this record was parsed from.                                                                       |
+| `fn`                          | The name of the file of API responses where this record was parsed from. To be used for trouble shooting. API responses are hosted externally in AWS s3.                                                                       |
 | `redlining_grade`             | The redlining grade, merged from Mapping Inequality based on the `lat` and `lon` of the adddress.                                              |
-| `race_perc_non_white`         | The percentage of people of color (not non-Hispanic White) in the Census block group. Sourced from the 2019 5-year American Community Survey.  |
-| `income_lmi`                  | `median_household_income` divided by the city median household income.                                                                         |
-| `ppl_per_sq_mile`             | People per square mile is used to determine population density. Sourced from 2019 TIGER shape files from the U.S. Census Bureau.               |
-| `n_providers`                 | The number of other competitors in the addresses  Census block group. Sourced from FCC form 477.                                               |
-| `income_dollars_below_median` | City median household income minus the `median_household_income`.                                                                              |
-| `internet_perc_broadband`     | The percentage of the population that is already subscriped to broadband in an addresses' Census block group.                                  |
+| `race_perc_non_white`         | The percentage of people of color (not non-Hispanic White) in the addresse's Census block group expressed as a proportion. Sourced from the 2019 5-year American Community Survey.  |
 | `median_household_income `    | The median household income in the addresses' Census block group. Sourced from the 2019 5-year American Community Survey                       |
+| `income_lmi`                  | `median_household_income` divided by the city median household income (sourced from U.S. Census Bureau).                                                                         |
+| `income_dollars_below_median` | City median household income minus the `median_household_income`.                                                                              |
+| `ppl_per_sq_mile`             | People per square mile is used to determine population density. Sourced from 2019 TIGER shape files from the U.S. Census Bureau.               |
+| `n_providers`                 | The number of other wired competitors in the addresses' Census block group. Sourced from FCC form 477.                                              |
+| `internet_perc_broadband`     | The percentage of the population that is already subscriped to broadband in an addresses' Census block group expressed as a proportion.                                  |
+
 
 This dataset was created in `notebooks/1-process-offers.ipynb`. 
 
 You can find a similar file for inidividuals cities, [below](#Localized-datasets).
 
 ### Localized datasets
-Do you want to write a local story based on the data we collected?
+In addition to the ISP-level offer files described above, we have generated similar data files for each ISP-city combination, listed and linked below. For column definitions, see the section above.
 
-We wrote a story recipe guide to help do that, and have made street-level data for each city and provider available here:
+Do you want to write a local story based on the data we collected? We wrote a [story recipe](https://TK) guide to help you do that. 
 
  - Albuquerque, N.M. ([CenturyLink](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/albuquerque_centurylink_plans.csv), [EarthLink](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/albuquerque_earthlink_plans.csv)) 
  - Atlanta, Ga. ([AT&T](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/atlanta_at&t_plans.csv), [EarthLink](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/atlanta_earthlink_plans.csv)) 
@@ -164,49 +149,66 @@ We wrote a story recipe guide to help do that, and have made street-level data f
  - Wichita, Kan. ([AT&T](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/wichita_at&t_plans.csv), [EarthLink](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/wichita_earthlink_plans.csv)) 
 
 
-### Localized Maps
+### Offer Maps
 To view an interactive address-level map for the cities in our investigation, you can download the [Kepler.gl](https://https://kepler.gl/) maps for each provider.
 
-Click the any of the links below to download an HTML file for the provider you are interested in.
+Click any of the links below to view a map for the provider you are interested in.
 
 - Map for [AT&T](https://markup-public-data.s3.amazonaws.com/isp/at%26t-kepler.gl.html)
 - Map for [CenturyLink](https://markup-public-data.s3.amazonaws.com/isp/centurylink-kepler.gl.html)
 - Map for [EarthLink](https://markup-public-data.s3.amazonaws.com/isp/earthlink-kepler.gl.html)
 - Map for [Verizon](https://markup-public-data.s3.amazonaws.com/isp/verizon-kepler.gl.html)
 
-Once downloaded, open the HTML file in a web browser. (You can do this by dragging the file into the browser.) 
-
 Now you can use the search bar to quick travel to specific addresses or cities. If you know the areas, this will be immediately useful. However, if you would like an overlay of any socioeconomic factor in our investigation (median household income, the percentage of non-Hispanic Whites in the area, or redlining grades) we can produce them by request.
 
-These maps should be viewed with summaries of how speeds vary across each city and between areas.
+These maps should be viewed alongside summaries of how speeds vary across each city and between areas.
 
-Please refer to the [methodology]() or this summary [file](#summary-of-disparities) to see how large disparities are between areas of the same city.
+Please refer to the [methodology](https://TK) or this summary [file](#summary-of-disparities) for that information.
+
+### Summary of Disparities
+The `data/output/tables/table1_disparities_by_city.csv` file summarizes the disparities we observed for each city-ISP combination, and represents the core of our findings.
+
+It contains the following:
 
 
-### What else is in the data directory?
-Tables and figures featured in our methodology and story can be found in `data/ouput/tables` and `data/output/figs`, respectively.
+| column                | description                                                                                                                               |
+|:----------------------|:------------------------------------------------------------------------------------------------------------------------------------------|
+| `major_city`           | The city analyzed.                                                                                                                      |
+| `state`                 | The state that the city is in.                                                                                                             |
+| `isp`                   | The Internet Service Provider.                                                                                                             |
+| `uniform_speed`         | Whether the city had virtually the same speeds offered, we omit these cities from out disparate outcome analysis.                         |
+| `income_disparity`      | Whether we identifed a disparity between lower and upper income areas.                                                                         |
+| `pct_slow_lower_income` | Percentage of addresses in lower income areas that were offered slow speeds (>25 Mbps) expressed as a proportion.                                                   |
+| `pct_slow_upper_income` | Percentage of addresses in upper income areas that were offered slow speeds expressed as a proportion.                                                               |
+| `income_pct_pt_diff`    | The percentage point difference between income groups offered slow speeds, if this was at or greater than 5, `income_disparity` is `True` |
+| `flag_income`           | In cases where we did not analyze this city for income-based disparities, the reason why. See our methodology document for more details.                               |
+| `race_disparity`        | Whether we identified a disparity between the most-White and least-White areas.                                |
+| `pct_slow_least_white`  | Percentage of addresses in least-White areas that were offered slow speeds expressed as a proportion.                                                               |
+| `pct_slow_most_white`   | Percentage of addresses in most-White areas that were offered slow speeds expressed as a proportion.                                                                 |
+| `race_pct_pt_diff`      | The percentage point difference in slow speed offers between the most-White and least-White areas. If this was at or greater than 5, `race_disparity` is `True`.                                                   |
+| `flag_race`             | In cases where we did not analyze this city based on racial or ethnic groups, the reason why. See our methodology document for more details.                                                                    |
+| `redlining_disparity`   | Whether we identified a disparity between HOLC-rated A/B vs. D areas.                                                                                   |
+| `pct_slow_d_rated`      | Percentage of addresses in historically D-rated areas that were offered slow speeds expressed as a proportion.                                                      |
+| `pct_slow_ab_rated`     | Percentage of addresses in historically A and B-rated areas that were offered slow speeds expressed as a proportion.                                                |
+| `redlining_pct_pt_diff` | The percentage point difference in slow speed offers between historically D-rated and A/B-rated  neighborhoods. If this was at or greater than 5, `redlining_disparity` is `True`.                                            |
+| `flag_redlining`        | In cases where we did not analyze this city with redlining grades, the reason why. See our methodology document for more details.                                                                                    |
 
-The `data` directory also features `data/input` and `data/intermediary` files that were collected and processed to create the files in `data/output`. Their entirety is not stored in GitHub due to space restrictions. Go to the [the next section](#Download-all-data) to access this data. 
-
-In the `data/input` we stored historical redlining maps that were digitized by University of Richmond's [Mapping Inequality](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58&text=intro) project, as well as [TIGER](https://www.census.gov/cgi-bin/geo/shapefiles/index.php) shapefiles from the U.S. Census.
-
-In `data/intermediary` you will find aggregated data from the American Community Survey, and the FCC's Form 477.
+This file was generated in `notebooks/3-statistical-tests-and-regression.ipynb`.
 
 ### Download all data
-You can find the remaining input and intermediary files hosted externally in AWS S3:
+Certain data files were too large to host on GitHub, but have been uploaded to Amazon Web Services' Simple Storage Service (Amazon S3):
+
+`s3://markup-public-data/isp/input.tar.xz` (~7.7 GB uncompressed) contains open source addresses (`data/input/addresses/open_addresses_enriched` and `data/input/isp`), bulk data from government sources: the  U.S. Census (`data/input/census/acs5/`) and FCC Form 477 (`data/input/fcc/fbd_us_with_satellite_dec2020_v1.csv.gz`). 
+
+`s3://markup-public-data/isp/isp-intermedairy.tar.xz` (~5.7 GB uncompressed) and contains API responses from each ISP (`data/intermediary/isp/`) appended to the geographic data we pulled in above.
+
+For your convenience we have included a command-line script to download these files: 
 ```
-s3://markup-public-data/isp/isp-input.tar.xz
-s3://markup-public-data/isp/isp-intermedairy.tar.xz
+data/download_external_data.sh
 ```
 
-`s3://markup-public-data/isp/input.tar.xz` is about 7.7 GB uncompressed and contains open source addresses (`data/input/addresses/open_addresses_enriched` and `data/input/isp`), bulk data from government sources: the  U.S. Census (`data/input/census/acs5/`) and FCC Form 477 (`data/input/fcc/fbd_us_with_satellite_dec2020_v1.csv.gz`). 
 
-`s3://markup-public-data/isp/isp-intermedairy.tar.xz` is about 5.7 GB uncompressed and contains API responses from each ISP (`data/intermediary/isp/`) appended to the geographic data we pulled in above. It also contains 
-
-For your convenience we wrote a script to download the files, here: `data/download_external_data.sh`.
-
-
-## Setup
+## Re-running Notebooks
 ### Python
 Make sure you have Python 3.8+ installed, we used [Miniconda](https://docs.conda.io/en/latest/miniconda.html) to create a Python 3.8 [virtual environment](https://stackoverflow.com/a/56713819).
 
@@ -216,43 +218,35 @@ Install the Python packages with pip:<br>
 pip install -r requirements.txt
 ```
 
-## Notebooks
-These notebooks are intended to be run sequentially, but they are not dependent on one another.  If you want a quick overview of the methodology, you only need to concern yourself with `3-statistical-tests-and-regression.ipynb`.
-
-To run all notebooks you can use the command `nbexec notebooks`.
+The notebooks are intended to be run sequentially, but can also be run independently.
+To run all notebooks in sequence, you can use the command 
+```nbexec notebooks```
 
 Note that when `recalculate = False` in each notebook, files that exist are not re-generated.
 
+## Notebooks
+The Python/Jupyter notebooks in this repository’s notebooks/ directory demonstrate the steps we took to process and analyze the data we collected. If you want a quick overview of the main methodology, you can skip directly to 3-statistical-tests-and-regression.ipynb.
+
 ### 0-get-acs-data.ipynb
-Collect data from the U.S. Census Bureau's American Community Survey. If you want to collect your own census data, you'll need to regiester for an [API key](https://api.census.gov/data/key_signup.html), and assign it as the environment variable `CENSUS_API_KEY`. To re-create out results, this is not necessary, as all outputs we used in this analysis are saved in this repository.
+This notebook collects data from the U.S. Census Bureau's American Community Survey. If you want to re-fetch this data, you'll need to register for an [API key](https://api.census.gov/data/key_signup.html), and assign it as the environment variable `CENSUS_API_KEY`. Otherwise, this is not necessary, as all outputs we used in this analysis are already saved in this repository.
 
 ### 1-process-offers.ipynb
-Parses and preprocesses the JSON responses for offers collected from ISP's service lookup tools. The functions that parse each response can be found in `parsers.py`.
+This notebook parses and preprocesses the JSON responses for offers collected from each ISP's service lookup tools. The functions that parse each API response can be found in `noteobooks/parsers.py`.
 
-### 2a-att-reports.ipynb
-An overview of offers by the ISP AT&T. This contains breakdowns cities served by AT&T by income-level, race/ethnicity, and historical redlining grades. The same notebooks exist for Verizon (`2b-verizon-reports.ipynb`), CenturyLink (`2c-centurylink-reports.ipynb`), and EarthLink (`2d-earthlink-reports.ipynb`).
+See examples of the API response JSON in `data/intermediary/isp`, or [download](#Download-all-data) all the data.
 
-The code to produce these charts is in `analysis.py`
+### 2a-att-reports.ipynb / 2b-verizon-reports.ipynb / 2c-centurylink-reports.ipynb / 2d-earthlink-reports.ipynb
+An overview of offers by each ISP. This contains breakdowns for each city served by the ISP by income-level, race/ethnicity, and historical redlining grades. 
+
+The code to produce the charts in these notebooks can be found in `notebooks/aggregators.py`
 
 ### 3-statistical-tests-and-regression.ipynb
-The bulk of analysis is in this notebook. 
-
-This is where we test for disparities between social groups that get offered the worst deals (download speeds below 25 Mbps for the same price as faster speeds in the same city).
+This notebook contains the bulk of our analyses. In it, we test for disparities in slow speed offers by income-level, race/ethnicity, and historical redlining grades.
 
 This is also where we use logistic regression to adjust for business factors to see if accounting for them would eliminate the disparities we observed.
 
 ### 4-verizon-spotcheck.ipynb
-A look into Verizon's price changes for limitations in the methdology.
+This notebook examines Verizon's price changes, addressed in the limitations section of the methodology document.
 
 ### 5-find-closest-fiber-address.ipynb
-Using scikit-learn's `BallTree` algorithim to find the closest address with blazing fast speeds (≥200 Mbps) for any address in a city. We used this to create the topper graphic in the main story.
-
-<hr>
-
-There are also several Python utility scripts in this directory:
-
-### aggregators.py
-Used to aggregate data and produce charts in notebooks starting with "2".
-
-### parsers.py
-Parses JSON from lookup tools and geocodes addresses within HOLC grades. See examples of the JSON in `data/intermediary/isp`, or [download](#Download-all-data) all the data.
+This notebook uses scikit-learn's BallTree algorithm to find the closest address with blazing fast speeds (≥200 Mbps) for any address in a city. We used the results to create the topper graphic in the main story.
