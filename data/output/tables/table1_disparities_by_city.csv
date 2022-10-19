@@ -1,0 +1,77 @@
+major_city,state,income_disparity,isp,pct_slow_lower_income,pct_slow_upper_income,income_pct_pt_diff,uniform_speed,flag_income,race_disparity,pct_slow_least_white,pct_slow_most_white,race_pct_pt_diff,flag_race,redlining_disparity,pct_slow_d_rated,pct_slow_ab_rated,redlining_pct_pt_diff,flag_redlining
+Atlanta,GA,True,AT&T,0.1443,0.0703,0.07400000000000001,False,,False,0.0953,0.0782,0.01709999999999999,,True,0.1622,0.0324,0.12980000000000003,
+Charleston,SC,True,AT&T,0.4244,0.0758,0.3486,False,,True,0.339,0.1577,0.18130000000000002,,,,,,not HOLC graded
+Charlotte,NC,False,AT&T,0.0964,0.0482,0.0482,False,,False,0.0826,0.0785,0.004100000000000006,,True,0.2638,0.1258,0.13799999999999998,
+Chicago,IL,True,AT&T,0.2834,0.2247,0.058699999999999974,False,,False,0.2577,0.2303,0.02739999999999998,,True,0.2802,0.1978,0.0824,
+Columbus,OH,True,AT&T,0.2041,0.0661,0.138,False,,True,0.1426,0.0879,0.0547,,True,0.3131,0.1179,0.19519999999999998,
+Detroit,MI,True,AT&T,0.4978,0.261,0.2368,False,,,,,,no diversity,True,0.6769,0.2006,0.47629999999999995,
+Houston,TX,True,AT&T,0.1507,0.0404,0.11030000000000001,False,,True,0.1122,0.0537,0.058499999999999996,,True,0.1634,0.0575,0.1059,
+Huntsville,AL,True,AT&T,0.2163,0.0962,0.1201,False,,True,0.1319,0.0822,0.049699999999999994,,,,,,not HOLC graded
+Indianapolis,IN,True,AT&T,0.2483,0.1405,0.10779999999999998,False,,False,0.2058,0.1623,0.04350000000000001,,True,0.2869,0.1424,0.1445,
+Jackson,MS,True,AT&T,0.3079,0.0683,0.2396,False,,False,0.177,0.1608,0.016199999999999992,,,,,,small bin
+Jacksonville,FL,True,AT&T,0.1393,0.0402,0.09910000000000001,False,,True,0.1213,0.0696,0.05170000000000001,,,,,,not HOLC graded
+Kansas City,MO,True,AT&T,0.5406,0.1102,0.43039999999999995,False,,True,0.5031,0.161,0.34209999999999996,,True,0.6849,0.121,0.5639,
+Little Rock,AR,True,AT&T,0.1723,0.0528,0.11950000000000001,False,,True,0.1598,0.0492,0.1106,,,,,,small bin
+Los Angeles,CA,True,AT&T,0.5002,0.2892,0.21099999999999997,False,,False,0.294,0.3301,-0.03610000000000002,,True,0.3352,0.2704,0.06480000000000002,
+Louisville,KY,True,AT&T,0.3486,0.0405,0.30810000000000004,False,,True,0.299,0.036,0.263,,True,0.3751,0.0568,0.31829999999999997,
+Milwaukee,WI,True,AT&T,0.2088,0.0535,0.15530000000000002,False,,False,0.122,0.1043,0.017699999999999994,,True,0.1935,0.0343,0.1592,
+Nashville,TN,True,AT&T,0.2391,0.1114,0.1277,False,,True,0.1332,0.0713,0.06190000000000001,,True,0.1719,0.1004,0.0715,
+New Orleans,LA,True,AT&T,0.807,0.4381,0.36890000000000006,False,,True,0.7682,0.4478,0.3204,,True,0.769,0.4666,0.3024,
+Oklahoma City,OK,True,AT&T,0.5328,0.071,0.46180000000000004,False,,True,0.5115,0.1142,0.3973,,,,,,not HOLC graded
+Wichita,KS,True,AT&T,0.2898,0.049,0.24080000000000001,False,,True,0.2121,0.0871,0.125,,True,0.252,0.0482,0.2038,
+Albuquerque,NM,True,CenturyLink,0.256,0.1822,0.0738,False,,False,0.2063,0.2372,-0.030899999999999983,,,,,,not HOLC graded
+Billings,MT,True,CenturyLink,0.7749,0.6258,0.1491,False,,,,,,no diversity,,,,,not HOLC graded
+Boise,ID,False,CenturyLink,0.1239,0.1169,0.006999999999999992,False,,,,,,no diversity,,,,,not HOLC graded
+Cheyenne,WY,True,CenturyLink,0.6857,0.3085,0.3772,False,,,,,,no diversity,,,,,not HOLC graded
+Denver,CO,True,CenturyLink,0.2311,0.0814,0.1497,False,,False,0.1553,0.1172,0.038099999999999995,,True,0.2416,0.0584,0.1832,
+Des Moines,IA,True,CenturyLink,0.3997,0.2771,0.12259999999999999,False,,True,0.4593,0.2692,0.1901,,True,0.5571,0.3152,0.24190000000000006,
+Fargo,ND,False,CenturyLink,0.3357,0.2903,0.045399999999999996,False,,,,,,no diversity,,,,,not HOLC graded
+Las Vegas,NV,True,CenturyLink,0.6784,0.4097,0.2687,False,,True,0.7127,0.398,0.3147,,,,,,not HOLC graded
+Minneapolis,MN,True,CenturyLink,0.513,0.0769,0.43610000000000004,False,,True,0.2388,0.053,0.18580000000000002,,True,0.5335,0.0622,0.4713,
+Omaha,NE,True,CenturyLink,0.5275,0.2261,0.3014,False,,True,0.5498,0.2206,0.32919999999999994,,,,,,small bin
+Phoenix,AZ,True,CenturyLink,0.3175,0.1493,0.16820000000000002,False,,True,0.3468,0.1631,0.1837,,True,0.5878,0.1664,0.4214,
+Portland,OR,True,CenturyLink,0.2724,0.1617,0.11069999999999997,False,,False,0.1644,0.1891,-0.0247,,True,0.3151,0.0881,0.22699999999999998,
+Salt Lake City,UT,True,CenturyLink,0.4545,0.2721,0.1824,False,,False,0.2984,0.2671,0.031299999999999994,,True,0.3017,0.1545,0.14720000000000003,
+Seattle,WA,True,CenturyLink,0.5056,0.1932,0.3124,False,,True,0.3288,0.1873,0.1415,,True,0.315,0.1619,0.1531,
+Sioux Falls,SD,True,CenturyLink,0.6778,0.498,0.17979999999999996,False,,True,0.5917,0.5127,0.07899999999999996,,,,,,not HOLC graded
+Baltimore,MD,False,Verizon,0.9974,0.9905,0.006899999999999906,True,,False,0.9985,0.979,0.019500000000000073,,False,0.9907,0.9974,-0.006699999999999928,
+Boston,MA,False,Verizon,0.0577,0.0121,0.0456,True,,False,0.033,0.0412,-0.008199999999999999,,False,0.0616,0.0339,0.027700000000000002,
+New York City,NY,False,Verizon,0.0006,0.0028,-0.0022,True,,False,0.0008,0.0026,-0.0018,,False,0.0001,0.0005,-0.0004,
+Newark,NJ,True,Verizon,0.189,0.1338,0.0552,False,,,,,,no diversity,True,0.2071,0.0235,0.1836,
+Philadelphia,PA,False,Verizon,0.0281,0.0192,0.008900000000000002,True,,False,0.0178,0.0212,-0.0034000000000000002,,False,0.0241,0.005,0.0191,
+Providence,RI,False,Verizon,0.0064,0.0,0.0064,True,,False,0.0012,0.0,0.0012,,,,,,small bin
+Virginia Beach,VA,True,Verizon,0.2884,0.1961,0.0923,False,,True,0.307,0.2023,0.10469999999999999,,,,,,not HOLC graded
+Washington,DC,True,Verizon,0.3228,0.1252,0.19759999999999997,False,,False,0.2799,0.2839,-0.0040000000000000036,,,,,,not HOLC graded
+Albuquerque,NM,False,EarthLink,1.0,1.0,0.0,True,,False,1.0,1.0,0.0,,,,,,not HOLC graded
+Atlanta,GA,False,EarthLink,0.1177,0.0927,0.024999999999999994,False,,False,0.1095,0.0864,0.023099999999999996,,True,0.1258,0.042,0.08379999999999999,
+Billings,MT,False,EarthLink,1.0,1.0,0.0,True,,,,,,no diversity,,,,,not HOLC graded
+Boise,ID,False,EarthLink,1.0,1.0,0.0,True,,,,,,no diversity,,,,,not HOLC graded
+Charleston,SC,True,EarthLink,0.5353,0.2078,0.3275,False,,True,0.4118,0.2459,0.1659,,,,,,not HOLC graded
+Charlotte,NC,False,EarthLink,0.1078,0.0719,0.0359,False,,False,0.0956,0.0929,0.002700000000000008,,,,,,small bin
+Cheyenne,WY,False,EarthLink,1.0,1.0,0.0,True,,,,,,no diversity,,,,,not HOLC graded
+Chicago,IL,True,EarthLink,0.2874,0.1842,0.10319999999999999,False,,True,0.2721,0.1903,0.08180000000000001,,True,0.2637,0.1724,0.09129999999999999,
+Columbus,OH,False,EarthLink,0.7873,0.7393,0.04800000000000004,False,,False,0.7517,0.7347,0.017000000000000015,,True,0.7531,0.6023,0.15080000000000005,
+Denver,CO,False,EarthLink,1.0,1.0,0.0,True,,False,1.0,1.0,0.0,,False,1.0,1.0,0.0,
+Des Moines,IA,False,EarthLink,1.0,1.0,0.0,True,,False,1.0,1.0,0.0,,False,1.0,1.0,0.0,
+Detroit,MI,True,EarthLink,0.4771,0.2745,0.2026,False,,,,,,no diversity,True,0.6455,0.2184,0.4270999999999999,
+Fargo,ND,False,EarthLink,1.0,1.0,0.0,True,,,,,,no diversity,,,,,not HOLC graded
+Houston,TX,True,EarthLink,0.1556,0.0689,0.08669999999999999,False,,False,0.1178,0.0707,0.0471,,True,0.1667,0.0562,0.11049999999999999,
+Huntsville,AL,True,EarthLink,0.1308,0.0776,0.0532,False,,False,0.0721,0.0667,0.005400000000000002,,,,,,not HOLC graded
+Indianapolis,IN,False,EarthLink,0.2211,0.1971,0.023999999999999994,False,,False,0.2175,0.2084,0.009099999999999997,,True,0.2635,0.1226,0.14090000000000003,
+Jacksonville,FL,False,EarthLink,0.1781,0.1864,-0.008300000000000002,False,,False,0.1726,0.1896,-0.016999999999999987,,,,,,not HOLC graded
+Kansas City,MO,True,EarthLink,0.5684,0.3,0.2684,False,,True,0.5621,0.3033,0.25880000000000003,,True,0.7141,0.1261,0.588,
+Las Vegas,NV,False,EarthLink,0.9939,0.9906,0.0032999999999999696,True,,False,0.9983,0.9823,0.016000000000000014,,,,,,not HOLC graded
+Little Rock,AR,False,EarthLink,0.1949,0.1739,0.02099999999999999,False,,False,0.1489,0.156,-0.007099999999999995,,,,,,small bin
+Los Angeles,CA,True,EarthLink,0.478,0.264,0.21399999999999997,False,,False,0.2699,0.3141,-0.04420000000000002,,True,0.3351,0.255,0.0801,
+Louisville,KY,True,EarthLink,0.3365,0.0721,0.2644,False,,True,0.2811,0.0656,0.21550000000000002,,True,0.3552,0.0836,0.2716,
+Milwaukee,WI,True,EarthLink,0.2093,0.0789,0.13040000000000002,False,,False,0.1402,0.1257,0.014499999999999985,,True,0.1992,0.0439,0.1553,
+Nashville,TN,False,EarthLink,0.246,0.2437,0.0022999999999999965,False,,False,0.168,0.2082,-0.040199999999999986,,False,0.1873,0.2716,-0.08430000000000001,
+New Orleans,LA,True,EarthLink,0.8068,0.4308,0.37599999999999995,False,,True,0.7713,0.486,0.2853,,True,0.7956,0.5439,0.2516999999999999,
+Oklahoma City,OK,True,EarthLink,0.4263,0.1952,0.2311,False,,True,0.4448,0.2128,0.23199999999999998,,,,,,not HOLC graded
+Omaha,NE,False,EarthLink,1.0,1.0,0.0,True,,False,1.0,1.0,0.0,,,,,,small bin
+Phoenix,AZ,False,EarthLink,1.0,1.0,0.0,True,,False,1.0,1.0,0.0,,,,,,not HOLC graded
+Portland,OR,False,EarthLink,1.0,1.0,0.0,True,,False,1.0,1.0,0.0,,False,1.0,1.0,0.0,
+Salt Lake City,UT,False,EarthLink,1.0,1.0,0.0,True,,False,1.0,1.0,0.0,,False,1.0,1.0,0.0,
+Seattle,WA,False,EarthLink,1.0,1.0,0.0,True,,False,1.0,1.0,0.0,,False,1.0,1.0,0.0,
+Sioux Falls,SD,False,EarthLink,1.0,1.0,0.0,True,,False,1.0,1.0,0.0,,,,,,not HOLC graded
+Wichita,KS,True,EarthLink,0.2609,0.1713,0.08960000000000001,False,,False,0.2062,0.1835,0.022699999999999998,,True,0.17,0.05,0.12000000000000001,

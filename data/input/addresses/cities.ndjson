@@ -1,0 +1,52 @@
+{"fn": "../data/open_addresses/us_mi_city_of_detroit-addresses-city.geojson.gz", "city": "DETROIT", "state": "MI", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_wi_city_of_milwaukee-addresses-city.geojson.gz", "city": "MILWAUKEE", "state": "WI", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_oh_cleveland.geojson.gz", "city": "CLEVELAND", "state": "OH", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_tx_houston.geojson.gz", "city": "HOUSTON", "state": "TX", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_tn_city_of_memphis-addresses-city.geojson.gz", "city": "MEMPHIS", "state": "TN", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_ms_hinds_county.geojson.gz", "city": "JACKSON", "state": "MS", "att": true}
+{"fn": "../data/open_addresses/us_de_wilmington.geojson.gz", "city": "WILMINGTON", "state": "DE", "verizon": true}
+{"fn": "../data/open_addresses/us_ar_little_rock.geojson.gz", "city": "LITTLE ROCK", "state": "AR", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_ca_city_of_los_angeles-addresses-city.geojson.gz", "city": "LOS ANGELES", "state": "CA", "earthlink": true, "att": true}
+{"fn": "../data/open_addresses/us_mo_city_of_kansas_city-addresses-city.geojson.gz", "city": "KANSAS CITY", "state": "MO", "earthlink": true, "att": true}
+{"fn": "../data/open_addresses/us_nc_charlotte.geojson.gz", "city": "CHARLOTTE", "state": "NC", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_sc_city_of_charleston-addresses-city.geojson.gz", "city": "CHARLESTON", "state": "SC", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_ok_oklahoma_city.geojson.gz", "city": "OKLAHOMA CITY", "state": "OK", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_fl_jacksonville.geojson.gz", "city": "JACKSONVILLE", "state": "FL", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_ks_wichita.geojson.gz", "city": "WICHITA", "state": "KS", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_al_city_of_huntsville-addresses-city.geojson.gz", "city": "HUNTSVILLE", "state": "AL", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_ga_city_of_atlanta-addresses-city.geojson.gz", "city": "ATLANTA", "state": "GA", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_il_city_of_chicago-addresses-state.geojson.gz", "city": "CHICAGO", "state": "IL", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_la_city_of_new_orleans-addresses-city.geojson.gz", "city": "NEW ORLEANS", "state": "LA", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_ky_louisville.geojson.gz", "city": "LOUISVILLE", "state": "KY", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_co_denver-addresses-county.geojson.gz", "city": "DENVER", "state": "CO", "centurylink": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_id_city_of_boise-addresses-city.geojson.gz", "city": "BOISE", "state": "ID", "centurylink": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_mn_minneapolis-addresses-county.geojson.gz", "city": "MINNEAPOLIS", "state": "MN", "centurylink": true}
+{"fn": "../data/open_addresses/us_nv_las_vegas-addresses-city.geojson.gz", "city": "LAS VEGAS", "state": "NV", "centurylink": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_ne_omaha.geojson.gz", "city": "OMAHA", "state": "NE", "centurylink": true, "earthlink": true }
+{"fn": "../data/open_addresses/us_or_portland-addresses-city.geojson.gz", "city": "PORTLAND", "state": "OR", "centurylink": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_in_indianapolis.geojson.gz", "city": "INDIANAPOLIS", "state": "IN", "att": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_ax_phoenix.geojson.gz", "city": "PHOENIX", "state": "AZ", "centurylink": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_ut_salt_lake_city.geojson.gz", "city": "SALT LAKE CITY", "state": "UT", "centurylink": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_wa_seattle.geojson.gz", "city": "SEATTLE", "state": "WA", "centurylink": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_ia_des_moines.geojson.gz", "city": "DES MOINES", "state": "IA", "centurylink": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_sd_city_of_sioux_falls-addresses-city.geojson.gz", "city": "SIOUX FALLS", "state": "SD", "centurylink": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_nm_albuquerque-addresses-city.geojson.gz", "city": "ALBUQUERQUE", "state": "NM", "centurylink": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_nd_city_of_fargo-addresses-city.geojson.gz", "city": "FARGO", "state": "ND", "centurylink": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_mt_billings.geojson.gz", "city": "BILLINGS", "state": "MT", "centurylink": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_wy_laramie-addresses-county.geojson.gz", "city": "CHEYENNE", "state": "WY", "centurylink": true, "earthlink": true}
+{"fn": "../data/open_addresses/us_pa_philadelphia-addresses-county.geojson.gz", "city": "PHILADELPHIA", "state": "PA", "verizon": true}
+{"fn": "../data/open_addresses/us_nj_newark.geojson.gz", "city": "NEWARK", "state": "NJ", "verizon": true}
+{"fn": "../data/open_addresses/us_ri_providence-addresses-city.geojson.gz", "city": "PROVIDENCE", "state": "RI", "verizon": true}
+{"fn": "../data/open_addresses/us_ma_city_of_boston-addresses-city.geojson.gz", "city": "BOSTON", "state": "MA", "verizon": true}
+{"fn": "../data/open_addresses/us_md_baltimore.geojson.gz", "city": "BALTIMORE", "state": "MD", "verizon": true}
+{"fn": "../data/open_addresses/us_dc_statewide-addresses-city.geojson.gz", "city": "WASHINGTON", "state": "DC", "verizon": true}
+{"fn": "../data/open_addresses/us_va_virginia_beach-addresses-city.geojson.gz", "city": "VIRGINIA BEACH", "state": "VA", "verizon": true}
+{"fn": "../data/open_addresses/nyc_open_data_bronx.geojson.gz", "city": "BRONX", "state": "NY", "verizon": true}
+{"fn": "../data/open_addresses/nyc_open_data_brooklyn.geojson.gz", "city": "BROOKLYN", "state": "NY", "verizon": true}
+{"fn": "../data/open_addresses/nyc_open_data_new_york.geojson.gz", "city": "NEW YORK", "state": "NY", "verizon": true}
+{"fn": "../data/open_addresses/nyc_open_data_queens.geojson.gz", "city": "QUEENS", "state": "NY", "verizon": true}
+{"fn": "../data/open_addresses/nyc_open_data_staten_island.geojson.gz", "city": "STATEN ISLAND", "state": "NY", "verizon": true}
+{"fn": "../data/open_addresses/us_wv_charleston.geojson.gz", "city": "CHARLESTON", "state": "WV", "earthlink": true}
+{"fn": "../data/open_addresses/us_ct_city_of_bridgeport-addresses-city.geojson.gz", "city": "BRIDGEPORT", "state": "CT", "earthlink": true}
+{"fn": "../data/input/addresses/open_addresses/us_tn_city_of_nashville-addresses-city.geojson.gz", "city": "NASHVILLE", "state": "TN", "att": true, "earthlink": true}
+{"fn": "../data/input/addresses/open_addresses/us_oh_city_of_columbus-addresses-city--geocoded.geojson.gz", "city": "COLUMBUS", "state": "OH", "att": true, "earthlink": true}
