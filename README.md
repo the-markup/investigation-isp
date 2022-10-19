@@ -107,7 +107,7 @@ You can find a similar file for inidividuals cities, [below](#Localized-datasets
 ### Localized datasets
 In addition to the ISP-level offer files described above, we have generated similar data files for each ISP-city combination, listed and linked below. For column definitions, see the section above.
 
-Do you want to write a local story based on the data we collected? We wrote a [story recipe](https://themarkup.org/story-recipes/2022/10/19/how-to-investigate-if-low-income-least-white-neighborhoods-are-offered-the-worst-internet-deals-in-your-city) guide to help you do that. 
+Do you want to write a local story based on the data we collected? We wrote a [story recipe](https://themarkup.org/story-recipes/2022/10/19/journalists-investigate-which-neighborhoods-in-your-city-are-offered-the-worst-internet-deals) guide to help you do that. 
 
  - Albuquerque, N.M. ([CenturyLink](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/albuquerque_centurylink_plans.csv), [EarthLink](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/albuquerque_earthlink_plans.csv)) 
  - Atlanta, Ga. ([AT&T](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/atlanta_at&t_plans.csv), [EarthLink](https://github.com/the-markup/investigation-isp/blob/main/data/output/by_city/atlanta_earthlink_plans.csv)) 
